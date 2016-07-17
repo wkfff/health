@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+      <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+      <!-- 数据库表名区分大小写时改为true,默认为false -->
+      <property name="caseSensitive" value="true"/>
+    </plugin>
+    
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                    connectionURL="jdbc:mysql://localhost:3306/vaizn"
+                    userId="root"
+                    password="root">
+    </jdbcConnection>
+    
+    <javaModelGenerator targetPackage="com.vaizn.data.busi.dal.entity" targetProject="F:\work\workspace\impact\src\main\java"/>
+    <!-- mapper xml配置文件 -->
+    <sqlMapGenerator targetPackage="mappers"  targetProject="F:\work\workspace\impact\src\main\resources"/>
+    <!-- mapper接口 -->
+    <javaClientGenerator targetPackage="com.vaizn.data.busi.dal.mapper" targetProject="F:\work\workspace\impact\src\main\java" type="XMLMAPPER" />
+    
+    <table tableName="T_USER" >
+      <generatedKey column="USER_ID" sqlStatement="Mysql" identity="true"/>
+    </table>
+  </context>
+</generatorConfiguration>

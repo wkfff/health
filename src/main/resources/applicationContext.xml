@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:tx="http://www.springframework.org/schema/tx" 
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:cache="http://www.springframework.org/schema/cache" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    					http://www.springframework.org/schema/beans/spring-beans-4.2.xsd  
+    					http://www.springframework.org/schema/tx 
+    					http://www.springframework.org/schema/tx/spring-tx-4.2.xsd 
+    					http://www.springframework.org/schema/aop 
+    					http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+                        http://www.springframework.org/schema/cache 
+                        http://www.springframework.org/schema/cache/spring-cache-4.2.xsd">
+
+	<!-- 自动扫描组件，需要把controller去掉，否则影响事务管理 -->
+	<context:component-scan base-package="com.vaizn.data.busi">  
+		<context:exclude-filter type="regex" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<context:annotation-config />
+	
+	<!-- <context:property-placeholder location="classpath:jdbc.properties"/> -->
+	
+	<!-- 启用缓存注解功能(请将其配置在Spring主配置文件中) -->
+    <cache:annotation-driven cache-manager="cacheManager"/>
+	
+	<bean id="propertyFactory" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath:/jdbc.properties</value>
+				<value>classpath:/conf.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+		<property name="properties" ref="propertyFactory" />
+	</bean>
+	
+	<!-- 配置数据源 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+    	<property name="driverClassName" value="${jdbc.driverClassName}" />
+    	<property name="url" value="${jdbc.url}" />
+    	<property name="username" value="${jdbc.username}" />
+    	<property name="password" value="${jdbc.password}" />
+    	<property name="maxIdle" value="${jdbc.maxIdle}" />
+    	<property name="defaultAutoCommit" value="false" />
+    	<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+    	<property name="timeBetweenEvictionRunsMillis" value="3600000" />
+    	<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+    	<property name="minEvictableIdleTimeMillis" value="3600000" />
+    </bean>
+    
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:mappers/*.xml"></property>
+		<!-- 分页插件 -->
+		<property name="typeAliasesPackage" value="com.vaizn.data.busi.dal.entity"/>
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+						dialect=hsqldb
+						reasonable=true
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
+	
+	<!-- 通用mapper配置 -->
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.vaizn.data.busi.dal.mapper"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+    
+    <!-- 配置JDBC基于@Transactional注解的事务管理 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="dataSource"></property>
+    </bean>
+    
+    <!-- 配置事务 -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="exe*"  propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 配置AOP切面 -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="transactionPointcut" expression="execution(* com.vaizn.data.busi.service..*.*(..))"/>
+		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice"/>
+	</aop:config>
+    
+    <!-- 声明使用注解式事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+	<bean id="applicationContextUtils" class="com.vaizn.utils.ApplicationContextUtils"></bean>
+
+    <!-- Spring提供的基于的Ehcache实现的缓存管理器 -->
+	<bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">  
+		<property name="configLocation" value="classpath:/ehcache.xml"/>  
+	</bean>  
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">  
+		<property name="cacheManager" ref="cacheManagerFactory"/>  
+	</bean>
+</beans>
