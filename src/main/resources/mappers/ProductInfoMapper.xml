@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vaizn.data.busi.dal.mapper.ProductInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.vaizn.data.busi.dal.entity.ProductInfo" >
+    <id column="product_id" property="productId" />
+    <result column="category_code" property="categoryCode" />
+    <result column="category_name" property="categoryName" />
+    <result column="brand_name" property="brandName" />
+    <result column="product_name" property="productName" />
+    <result column="product_material" property="productMaterial" />
+    <result column="product_cert_no" property="productCertNo" />
+    <result column="product_standard_no" property="productStandardNo" />
+    <result column="sanitary_cert_no" property="sanitaryCertNo" />
+    <result column="product_original" property="productOriginal" />
+    <result column="product_garantee" property="productGarantee" />
+    <result column="product_company" property="productCompany" />
+    <result column="company_address" property="companyAddress" />
+    <result column="company_phone" property="companyPhone" />
+    <result column="product_factory" property="productFactory" />
+    <result column="factory_address" property="factoryAddress" />
+    <result column="factory_phone" property="factoryPhone" />
+    <result column="product_agent" property="productAgent" />
+    <result column="agent_address" property="agentAddress" />
+    <result column="agent_phone" property="agentPhone" />
+    <result column="bar_code" property="barCode" />
+    <result column="net_content" property="netContent" />
+    <result column="product_usage" property="productUsage" />
+  </resultMap>
+</mapper>

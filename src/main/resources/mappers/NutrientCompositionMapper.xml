@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vaizn.data.busi.dal.mapper.NutrientCompositionMapper" >
+  <resultMap id="BaseResultMap" type="com.vaizn.data.busi.dal.entity.NutrientComposition" >
+    <id column="nutrient_id" property="nutrientId" />
+    <result column="product_id" property="productId" />
+    <result column="nutrient_name" property="nutrientName" />
+    <result column="nutrient_unit" property="nutrientUnit" />
+    <result column="reference_value" property="referenceValue" />
+    <result column="reference_unit" property="referenceUnit" />
+  </resultMap>
+</mapper>

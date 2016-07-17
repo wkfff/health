@@ -11,19 +11,19 @@
     </plugin>
     
     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                    connectionURL="jdbc:mysql://localhost:3306/vaizn"
+                    connectionURL="jdbc:mysql://localhost:3306/health"
                     userId="root"
                     password="root">
     </jdbcConnection>
     
-    <javaModelGenerator targetPackage="com.vaizn.data.busi.dal.entity" targetProject="F:\work\workspace\impact\src\main\java"/>
+    <javaModelGenerator targetPackage="com.vaizn.data.busi.dal.entity" targetProject="F:\work\workspace\health\src\main\java"/>
     <!-- mapper xml配置文件 -->
-    <sqlMapGenerator targetPackage="mappers"  targetProject="F:\work\workspace\impact\src\main\resources"/>
+    <sqlMapGenerator targetPackage="mappers"  targetProject="F:\work\workspace\health\src\main\resources"/>
     <!-- mapper接口 -->
-    <javaClientGenerator targetPackage="com.vaizn.data.busi.dal.mapper" targetProject="F:\work\workspace\impact\src\main\java" type="XMLMAPPER" />
+    <javaClientGenerator targetPackage="com.vaizn.data.busi.dal.mapper" targetProject="F:\work\workspace\health\src\main\java" type="XMLMAPPER" />
     
-    <table tableName="T_USER" >
-      <generatedKey column="USER_ID" sqlStatement="Mysql" identity="true"/>
+    <table tableName="T_NUTRIENT_COMPOSITION" >
+      <generatedKey column="NUTRIENT_ID" sqlStatement="Mysql" identity="true"/>
     </table>
   </context>
 </generatorConfiguration>
