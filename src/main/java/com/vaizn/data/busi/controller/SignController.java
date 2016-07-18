@@ -1,10 +1,22 @@
 package com.vaizn.data.busi.controller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.vaizn.common.vo.SignInDataVo;
+import com.vaizn.data.busi.dal.entity.SysUser;
+import com.vaizn.data.busi.service.IUserService;
+import com.vaizn.data.dto.common.BaseResponseDto;
+import com.vaizn.utils.CommonUtils;
 
 /**
  * 处理登录，登出操作
@@ -16,4 +28,34 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class SignController extends BaseController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SignController.class);
+	@Autowired
+	private IUserService userService;
+	
+	@RequestMapping(path = "/page", method={RequestMethod.POST,RequestMethod.GET})
+	public String signInPage() throws Exception {
+		return "/common/signIn";
+	}
+	
+	@RequestMapping(path = "/doSignIn", method=RequestMethod.POST)
+	@ResponseBody
+	public BaseResponseDto signIn(@RequestBody SignInDataVo signInData, ModelMap model)
+												throws Exception {
+		BaseResponseDto response = new BaseResponseDto();
+		String userAccount = signInData.getUserAccount();
+		String userPassword = signInData.getUserPassword();
+		if (StringUtils.isBlank(userAccount) || StringUtils.isBlank(userPassword)) {
+			response.setCode(1001);
+			response.setMessage("账号和密码不能为空！");
+		} else {
+			signInData.setUserPassword(CommonUtils.encodeMD5(signInData.getUserPassword()));
+			SysUser user = userService.checkSignInUser(signInData);
+			if (null == user) {
+				response.setCode(1001);
+				response.setMessage("账号或密码错误！");
+			} else
+				model.addAttribute("user", user);
+		}
+		
+		return response;
+	}
 }

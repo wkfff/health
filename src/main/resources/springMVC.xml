@@ -55,6 +55,15 @@
     <!-- 对静态资源文件的访问 -->
     <mvc:default-servlet-handler/>
     
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+    	<mvc:interceptor>
+    		<!-- 拦截指定请求 -->
+    		<mvc:mapping path="/" />
+    		<bean class="com.vaizn.data.busi.interceptor.SessionInterceptor"></bean>
+    	</mvc:interceptor>
+    </mvc:interceptors>
+    
 	<!-- 视图解释类 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/pages/"/>

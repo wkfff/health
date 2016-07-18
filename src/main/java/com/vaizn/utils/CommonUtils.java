@@ -153,6 +153,7 @@ public class CommonUtils {
 	}
 	
 	public static void main(String[] args) {
-		logger.info("加密后的值：{}", CommonUtils.encodeMD5("1"));	
+		logger.info("加密后的值：{}", CommonUtils.encodeMD5("1"));
+		logger.info("UUID:{}", CommonUtils.getUUID());
 	}
 }

@@ -8,11 +8,11 @@ public class SignInDataVo implements Serializable {
 
 	private String userAccount;
 	
-	private String password;
+	private String userPassword;
 
-	public SignInDataVo(String userAccount, String password) {
+	public SignInDataVo(String userAccount, String userPassword) {
 		this.userAccount = userAccount;
-		this.password = password;
+		this.userPassword = userPassword;
 	}
 
 	public SignInDataVo() {
@@ -27,11 +27,11 @@ public class SignInDataVo implements Serializable {
 		this.userAccount = userAccount;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getUserPassword() {
+		return userPassword;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 }

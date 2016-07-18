@@ -9,5 +9,4 @@
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
-	<jaxws:endpoint id="impactService" implementor="com.vaizn.data.busi.webservice.impl.ImpactService" address="/impact"/>
 </beans>
