@@ -59,8 +59,14 @@
     <mvc:interceptors>
     	<mvc:interceptor>
     		<!-- 拦截指定请求 -->
-    		<mvc:mapping path="/" />
-    		<bean class="com.vaizn.data.busi.interceptor.SessionInterceptor"></bean>
+    		<mvc:mapping path="/**" />
+    		<bean id="sessionInterceptor" class="com.vaizn.data.busi.interceptor.SessionInterceptor">
+    		  <property name="excludedUrls">
+    		    <list>
+    		      <value>/signin/page</value>
+    		    </list>
+    		  </property>
+    		</bean>
     	</mvc:interceptor>
     </mvc:interceptors>
     

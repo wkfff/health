@@ -20,12 +20,12 @@ jQuery(document).ready(function() {
             });
             return false;
         }
+        
     });
-
     $('.page-container form .username, .page-container form .password').keyup(function(){
         $(this).parent().find('.error').fadeOut('fast');
     });
-
+    
 });
 var SignIn = function(){
 	return {
