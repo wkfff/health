@@ -19,9 +19,12 @@
     <form id="loginForm" method="post">
     <input type="text" id="userAccount" name="userAccount" class="username" placeholder="用户名">
     <input type="password" id="userPassword" name="userPassword" class="password" placeholder="密码">
+    <button type="button" id="loginBtn">登录</button>
+    <div class="error"><span>+</span></div>
     </form>
-    <button type="button">登录</button>
   </div>
 </body>
+<script type="text/javascript" src="${ctp}/scripts/common/supersized.3.2.7.min.js"></script>
+<script type="text/javascript" src="${ctp}/scripts/common/supersized-init.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/common/signIn.js"></script>
 </html>
