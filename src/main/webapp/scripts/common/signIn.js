@@ -16,7 +16,7 @@ var SignIn = function(){
 			Common.post(url, datas, function(data) {
 				console.info(data.message);
 				if ('1000' == data.code) {
-					
+					window.location.href = ctp + '/product/promotion';
 				} else {
 					$("#errorText").text(data.message);
 		            $('.error').fadeOut('fast', function(){
