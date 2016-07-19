@@ -52,8 +52,11 @@ public class SignController extends BaseController {
 			if (null == user) {
 				response.setCode(1001);
 				response.setMessage("账号或密码错误！");
-			} else
+			} else {
 				model.addAttribute("user", user);
+				response.setCode(1000);
+				response.setMessage("登录成功！");
+			}
 		}
 		
 		return response;

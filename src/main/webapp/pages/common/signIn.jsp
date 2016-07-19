@@ -8,9 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%@ include file="/pages/common/baseFile.jsp"%>
   
-  <link type="text/css" href="${ctp}/styles/common/reset.css">
-  <link type="text/css" href="${ctp}/styles/common/supersized.css">
-  <link type="text/css" href="${ctp}/styles/common/style.css">
+  <link type="text/css" rel="stylesheet" href="${ctp}/styles/common/reset.css">
+  <link type="text/css" rel="stylesheet" href="${ctp}/styles/common/supersized.css">
+  <link type="text/css" rel="stylesheet" href="${ctp}/styles/common/style.css">
 </head>
   
 <body>
@@ -20,7 +20,7 @@
     <input type="text" id="userAccount" name="userAccount" class="username" placeholder="用户名">
     <input type="password" id="userPassword" name="userPassword" class="password" placeholder="密码">
     <button type="button" id="loginBtn">登录</button>
-    <div class="error"><span>+</span></div>
+    <div class="error"><span id="errorText">+</span></div>
     </form>
   </div>
 </body>

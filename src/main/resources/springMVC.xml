@@ -52,11 +52,6 @@
     	</property>
     </bean>
     
-    <!-- 不拦截静态资源 -->
-    <mvc:resources mapping="/images/**" location="/images/" />
-    <mvc:resources mapping="/scripts/**" location="/scripts/" />
-    <mvc:resources mapping="/styles/**" location="/styles/" />
-    
     <!-- 对静态资源文件的访问 -->
     <mvc:default-servlet-handler/>
     
@@ -69,6 +64,8 @@
     		  <property name="excludedUrls">
     		    <list>
     		      <value>/signin/page</value>
+    		      <value>/signin/doSignIn</value>
+    		      <value>/pages/common/signIn.jsp</value>
     		    </list>
     		  </property>
     		</bean>

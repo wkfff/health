@@ -22,7 +22,13 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request,
 							HttpServletResponse response, Object handler) throws Exception {
 		String uri = request.getRequestURI();
-		logger.info("请求URI：{}", uri);
+		//不拦截静态资源
+		if (uri.endsWith(".js") || uri.endsWith(".css")
+				|| uri.endsWith(".jpg")
+				|| uri.endsWith(".png")
+				|| uri.endsWith(".gif")) {
+			return true;
+		}
 		if (null != excludedUrls && !excludedUrls.isEmpty()) {
 			for (String str : excludedUrls) {
 				//包含该URI则不拦截当前请求地址
