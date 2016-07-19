@@ -1,5 +1,7 @@
 var promotionList = function() {
 	var mainGrid = $("#maingrid");
+	var gridWidth = $(window).width();
+	var gridHeight = $(window).height();
 	var gridColumns = [
 	  {display:'信息标题', name:'descTitle', align:'left', width:100, minWidth:60},
 	  {display:'信息类目', name:'categoryName', align:'left', width:100, minWidth:60},
@@ -11,10 +13,10 @@ var promotionList = function() {
 	var initGrid = function() {
 		mainGrid.ligerGrid({
 			columns:gridColumns,
-			rownumbers:true,
+			checkbox: true,
 			pageSize:30,
-			width: '100%',
-			height:300
+			width: gridWidth - 5,
+			height: gridHeight - 5
 		});
 	};
 	

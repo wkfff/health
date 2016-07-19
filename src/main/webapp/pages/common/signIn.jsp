@@ -8,9 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%@ include file="/pages/common/baseFile.jsp"%>
   
-  <link type="text/css" rel="stylesheet" href="${ctp}/styles/common/reset.css">
-  <link type="text/css" rel="stylesheet" href="${ctp}/styles/common/supersized.css">
-  <link type="text/css" rel="stylesheet" href="${ctp}/styles/common/style.css">
+  <link rel="stylesheet" href="${ctp}/styles/common/reset.css">
+  <link rel="stylesheet" href="${ctp}/styles/common/supersized.css">
+  <link rel="stylesheet" href="${ctp}/styles/common/style.css">
 </head>
   
 <body>
