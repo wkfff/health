@@ -10,9 +10,20 @@
   
   <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Aqua/css/ligerui-all.css" />
   <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Gray/css/all.css" />
+  <link rel="stylesheet" href="${ctp}/styles/common/common.css" />
 </head>
 
 <body style="overflow:hidden;">
+  <!-- 查询条件 -->
+  <div class="panel">
+    <div class="panel-title"><span>查询条件</span></div>
+    <div class="panel-content"></div>
+  </div>
+  <!-- 查询结果
+  <div class="paner">
+    <div class="panel-title"></div>
+    <div class="panel-content"></div>
+  </div> -->
   <div class="l-loading" style="display:block" id="pageloading"></div>
   <div class="l-clear"></div>
   <div id="maingrid"></div>
