@@ -15,19 +15,20 @@
 
 <body style="overflow:hidden;">
   <!-- 查询条件 -->
-  <div class="panel">
+  <div id="queryHead" class="panel">
     <div class="panel-title"><span>查询条件</span></div>
-    <div class="panel-content"></div>
+    <div class="panel-content" style="height:100px;"></div>
   </div>
-  <!-- 查询结果
-  <div class="paner">
-    <div class="panel-title"></div>
-    <div class="panel-content"></div>
-  </div> -->
-  <div class="l-loading" style="display:block" id="pageloading"></div>
-  <div class="l-clear"></div>
-  <div id="maingrid"></div>
-  <div style="display:none;"></div>
+  <!-- 查询结果 -->
+  <div class="panel">
+    <div class="panel-title"><span>查询结果</span></div>
+    <div class="panel-content">
+      <div class="l-loading" style="display:block" id="pageloading"></div>
+      <div class="l-clear"></div>
+      <div id="maingrid"></div>
+      <div style="display:none;"></div>
+    </div>
+  </div>
 </body>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/core/base.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/plugins/ligerGrid.js"></script>

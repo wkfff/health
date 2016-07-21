@@ -42,23 +42,33 @@ table {
 }
 
 .panel {
-	display: block;
+	overflow: hidden;
+	margin: 0;
 }
 
 .panel .panel-title {
+	position: relative;
 	border-bottom: 2px solid #F63;
-	height: 35px;
+	height: 30px;
 }
 
 .panel .panel-title span {
 	display: block;
-	height: 35px;
+	height: 30px;
 	width: 80px;
-	line-height: 35px;
+	line-height: 30px;
 	text-align:center;
 	font-family: tahoma, arial, '宋体', sans-serif;
 	color: #FFF;
 	background-color: #F63;
 	font-weight: bolder;
 	font-size: 14px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+.panel .panel-content {
+	overflow: hidden;
+	font-size: 12px;
+	font-family: tahoma, arial, '宋体', sans-serif;
 }
