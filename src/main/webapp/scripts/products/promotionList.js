@@ -11,13 +11,13 @@ var promotionList = function() {
 	  {display:'创建日期', name:'createDate', align:'left', width:100, minWidth:60}
 	];
 	
-	var initGrid = function() {alert(gridHeight+":"+qh);
+	var initGrid = function() {
 		mainGrid.ligerGrid({
 			columns:gridColumns,
 			checkbox: true,
 			pageSize:30,
 			width: gridWidth - 5,
-			height: gridHeight - qh - 47
+			height: gridHeight - qh - 35 - 10
 		});
 	};
 	

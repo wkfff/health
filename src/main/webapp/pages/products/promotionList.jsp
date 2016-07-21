@@ -11,12 +11,18 @@
   <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Aqua/css/ligerui-all.css" />
   <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Gray/css/all.css" />
   <link rel="stylesheet" href="${ctp}/styles/common/common.css" />
+  <link rel="stylesheet" href="${ctp}/styles/common/gh-buttons.css" />
 </head>
 
 <body style="overflow:hidden;">
   <!-- 查询条件 -->
   <div id="queryHead" class="panel">
-    <div class="panel-title"><span>查询条件</span></div>
+    <div class="panel-title">
+      <span>查询条件</span>
+      <ul>
+        <li><a href="javascript:void();" class="button icon search">查询</a></li>
+      </ul>
+    </div>
     <div class="panel-content" style="height:100px;"></div>
   </div>
   <!-- 查询结果 -->
