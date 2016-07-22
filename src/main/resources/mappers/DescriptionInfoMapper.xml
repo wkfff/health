@@ -4,11 +4,10 @@
   <resultMap id="BaseResultMap" type="com.vaizn.data.busi.dal.entity.DescriptionInfo" >
     <id column="desc_id" property="descId" />
     <result column="desc_title" property="descTitle" />
-    <result column="category_code" property="categoryCode" />
-    <result column="category_name" property="categoryName" />
+    <result column="desc_category" property="descCategory" />
     <result column="desc_source" property="descSource" />
     <result column="create_date" property="createDate" />
-    <result column="desc_valid" property="descValid" />
+    <result column="desc_status" property="descStatus" />
     <result column="desc_detail" property="descDetail" />
   </resultMap>
 </mapper>

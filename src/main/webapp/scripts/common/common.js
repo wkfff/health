@@ -38,6 +38,24 @@ var Common = function() {
 		fieldValidate: function(containerObj) {
 			
 		},
+		getSysEnume: function(fn) {
+			var data;
+			$.ajax({
+				type: "GET",
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				url: ctp + "/common/getSysEnume",
+				async: false,
+				data: "",
+				success: function(backdata) {
+					data = backdata.data;
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					
+				}
+			});
+			return data;
+		},
 		post: function(url, params, fn) {
 			$.ajax({
 				type: "POST",

@@ -5,6 +5,6 @@
     <id column="enume_id" property="enumeId" />
     <result column="enume_code" property="enumeCode" />
     <result column="enume_desc" property="enumeDesc" />
-    <result column="busi_table" property="busiTable" />
+    <result column="busi_column" property="busiColumn" />
   </resultMap>
 </mapper>

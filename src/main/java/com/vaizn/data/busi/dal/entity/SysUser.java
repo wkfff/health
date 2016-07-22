@@ -1,11 +1,15 @@
 package com.vaizn.data.busi.dal.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "sys_user")
-public class SysUser {
-    @Id
+public class SysUser implements Serializable {
+
+	private static final long serialVersionUID = -309562344223676129L;
+
+	@Id
     @GeneratedValue(generator="UUID")
     private String userId;
 

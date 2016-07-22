@@ -9,7 +9,8 @@
   <%@ include file="/pages/common/baseFile.jsp"%>
   
   <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Aqua/css/ligerui-all.css" />
-  <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Gray/css/all.css" />
+  <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Gray/css/grid.css" />
+  <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Tab/css/form.css" />
   <link rel="stylesheet" href="${ctp}/styles/common/common.css" />
   <link rel="stylesheet" href="${ctp}/styles/common/gh-buttons.css" />
 </head>
@@ -20,10 +21,12 @@
     <div class="panel-title">
       <span>查询条件</span>
       <ul>
-        <li><a href="javascript:void();" class="button icon search">查询</a></li>
+        <li><a id="search" href="javascript:void();" class="button icon search">查询</a></li>
       </ul>
     </div>
-    <div class="panel-content" style="height:100px;"></div>
+    <div class="panel-content" style="height:100px;">
+      <form id="queryForm"></form>
+    </div>
   </div>
   <!-- 查询结果 -->
   <div class="panel">
@@ -38,6 +41,7 @@
 </body>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/core/base.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/plugins/ligerGrid.js"></script>
+<script type="text/javascript" src="${ctp}/scripts/ligerUI/js/ligerui.all.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/products/promotionList.js"></script>
 <script type="text/javascript">
 	promotionList.onload();

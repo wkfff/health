@@ -25,6 +25,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 body {
 	line-height: 1;
+	font-family: "微软雅黑", "宋体", Arial, sans-serif;
+	font-size: 12px;
 }
 ol, ul {
 	list-style: none;
@@ -82,6 +84,8 @@ table {
 
 .panel .panel-content {
 	overflow: hidden;
-	font-size: 12px;
-	font-family: tahoma, arial, '宋体', sans-serif;
+}
+
+.panel .panel-content form {
+	margin-left: 10px;
 }

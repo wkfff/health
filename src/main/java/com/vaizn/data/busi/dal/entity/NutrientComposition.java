@@ -1,10 +1,15 @@
 package com.vaizn.data.busi.dal.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Table(name = "t_nutrient_composition")
-public class NutrientComposition {
-    @Id
+public class NutrientComposition implements Serializable {
+
+	private static final long serialVersionUID = 261193987842974405L;
+
+	@Id
     @GeneratedValue(generator="UUID")
     private String nutrientId;
 

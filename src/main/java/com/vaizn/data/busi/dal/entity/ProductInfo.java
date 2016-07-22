@@ -1,10 +1,15 @@
 package com.vaizn.data.busi.dal.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Table(name = "t_product_info")
-public class ProductInfo {
-    @Id
+public class ProductInfo implements Serializable {
+
+	private static final long serialVersionUID = -4881868555451055959L;
+
+	@Id
     @GeneratedValue(generator="UUID")
     private String productId;
 

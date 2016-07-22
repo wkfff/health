@@ -1,10 +1,15 @@
 package com.vaizn.data.busi.dal.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Table(name = "sys_enume")
-public class SysEnume {
-    @Id
+public class SysEnume implements Serializable {
+
+	private static final long serialVersionUID = -7643229985426841471L;
+
+	@Id
     @GeneratedValue(generator="UUID")
     private String enumeId;
 
@@ -12,7 +17,7 @@ public class SysEnume {
 
     private String enumeDesc;
 
-    private String busiTable;
+    private String busiColumn;
 
     public String getEnumeId() {
         return enumeId;
@@ -38,11 +43,11 @@ public class SysEnume {
         this.enumeDesc = enumeDesc;
     }
 
-    public String getBusiTable() {
-        return busiTable;
-    }
+	public String getBusiColumn() {
+		return busiColumn;
+	}
 
-    public void setBusiTable(String busiTable) {
-        this.busiTable = busiTable;
-    }
+	public void setBusiColumn(String busiColumn) {
+		this.busiColumn = busiColumn;
+	}
 }

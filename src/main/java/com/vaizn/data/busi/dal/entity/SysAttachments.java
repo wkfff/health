@@ -1,11 +1,15 @@
 package com.vaizn.data.busi.dal.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "sys_attachments")
-public class SysAttachments {
-    @Id
+public class SysAttachments implements Serializable {
+
+	private static final long serialVersionUID = -8095945182323418164L;
+
+	@Id
     @GeneratedValue(generator="UUID")
     private String attachmentId;
 

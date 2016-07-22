@@ -1,25 +1,27 @@
 package com.vaizn.data.busi.dal.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "t_description_info")
-public class DescriptionInfo {
-    @Id
+public class DescriptionInfo implements Serializable {
+
+	private static final long serialVersionUID = -3544581306152736954L;
+
+	@Id
     @GeneratedValue(generator="UUID")
     private String descId;
 
     private String descTitle;
 
-    private String categoryCode;
-
-    private String categoryName;
+    private String descCategory;
 
     private String descSource;
 
     private Date createDate;
 
-    private Integer descValid;
+    private Integer descStatus;
 
     private String descDetail;
 
@@ -39,23 +41,15 @@ public class DescriptionInfo {
         this.descTitle = descTitle;
     }
 
-    public String getCategoryCode() {
-        return categoryCode;
-    }
+    public String getDescCategory() {
+		return descCategory;
+	}
 
-    public void setCategoryCode(String categoryCode) {
-        this.categoryCode = categoryCode;
-    }
+	public void setDescCategory(String descCategory) {
+		this.descCategory = descCategory;
+	}
 
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public String getDescSource() {
+	public String getDescSource() {
         return descSource;
     }
 
@@ -71,12 +65,12 @@ public class DescriptionInfo {
         this.createDate = createDate;
     }
 
-    public Integer getDescValid() {
-		return descValid;
+	public Integer getDescStatus() {
+		return descStatus;
 	}
 
-	public void setDescValid(Integer descValid) {
-		this.descValid = descValid;
+	public void setDescStatus(Integer descStatus) {
+		this.descStatus = descStatus;
 	}
 
 	public String getDescDetail() {
