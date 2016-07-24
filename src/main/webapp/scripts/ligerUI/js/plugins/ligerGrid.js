@@ -936,7 +936,7 @@
                     g.trigger('error', [XMLHttpRequest, textStatus, errorThrown]);
                 }
             };
-            if (p.contentType) ajaxOptions.contentType = p.contentType;
+            if (p.contentType) ajaxOptions.contentType = p.contentType + ";charset=utf-8";
             if (p.contentType == "application/json" && typeof (parms) != "string")
             {
                 ajaxOptions.data = converParmJson(param)

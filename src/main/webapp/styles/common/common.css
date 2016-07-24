@@ -79,6 +79,7 @@ table {
 
 .panel .panel-title ul li {
 	margin: 5px;
+	float: left;
 	font-size: 12px;
 }
 

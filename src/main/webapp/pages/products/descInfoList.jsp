@@ -21,7 +21,7 @@
     <div class="panel-title">
       <span>查询条件</span>
       <ul>
-        <li><a id="search" href="javascript:void();" class="button icon search">查询</a></li>
+        <li><a id="search" href="javascript:void(0);" class="button icon search">查询</a></li>
       </ul>
     </div>
     <div class="panel-content" style="height:100px;">
@@ -30,7 +30,14 @@
   </div>
   <!-- 查询结果 -->
   <div class="panel">
-    <div class="panel-title"><span>查询结果</span></div>
+    <div class="panel-title">
+      <span>查询结果</span>
+      <ul>
+        <li><a id="addBtn" href="javascript:void();" class="button icon add">新增</a></li>
+        <li><a id="editBtn" href="javascript:void();" class="button icon edit">修改</a></li>
+        <li><a id="delBtn" href="javascript:void();" class="button danger icon trash">删除</a></li>
+      </ul>
+    </div>
     <div class="panel-content">
       <div class="l-loading" style="display:block" id="pageloading"></div>
       <div class="l-clear"></div>
@@ -40,10 +47,10 @@
   </div>
 </body>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/core/base.js"></script>
+<script type="text/javascript" src="${ctp}/scripts/ligerUI/js/plugins/ligerForm.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/plugins/ligerGrid.js"></script>
-<script type="text/javascript" src="${ctp}/scripts/ligerUI/js/ligerui.all.js"></script>
-<script type="text/javascript" src="${ctp}/scripts/products/promotionList.js"></script>
+<script type="text/javascript" src="${ctp}/scripts/products/descInfoList.js"></script>
 <script type="text/javascript">
-	promotionList.onload();
+	descInfoList.onload();
 </script>
 </html>

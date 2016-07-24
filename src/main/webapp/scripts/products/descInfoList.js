@@ -1,14 +1,15 @@
-var promotionList = function() {
+var descInfoList = function() {
 	var mainGrid = $("#maingrid");
 	var gridWidth = $(window).width();
 	var gridHeight = $(window).height();
 	var qh = $("#queryHead").height();
 	
 	var comboBoxData;
+	var resultGrid;
 	
 	var gridColumns = [
 	  {display:'信息标题', name:'descTitle', align:'left', width:100, minWidth:60},
-	  {display:'信息类目', name:'categoryCode', align:'left', width:100, minWidth:60},
+	  {display:'信息类目', name:'descCategory', align:'left', width:100, minWidth:60},
 	  {display:'信息来源', name:'descSource', align:'left', width:100, minWidth:60},
 	  {display:'信息状态', name:'descStatus', align:'left', width:100, minWidth:60},
 	  {display:'创建日期', name:'createDate', align:'left', width:100, minWidth:60}
@@ -28,33 +29,43 @@ var promotionList = function() {
 	}
 	
 	var initGrid = function() {
-		mainGrid.ligerGrid({
+		resultGrid = mainGrid.ligerGrid({
 			columns:gridColumns,
 			checkbox: true,
+			url: ctp + "/product/descList",
+			contentType: "application/json",
+			delayLoad: true,
 			pageSize:30,
 			width: gridWidth - 5,
 			height: gridHeight - qh - 35 - 10
 		});
 	};
 	
+	var eventRegister = function() {
+		$("#search").click(function(){
+			var formObj = new liger.get("queryForm");
+			var datas = formObj.getData();
+			$.extend(datas, {"page":resultGrid.options.page, "pageSize":resultGrid.options.pageSize});
+			resultGrid.loadServerData(datas);
+		});
+		$("#addBtn").click(function(){
+			
+		});
+		$("#editBtn").click(function(){
+			
+		});
+		$("#delBtn").click(function(){
+			
+		});
+	};
+	
 	return {
 		onload: function(){
 			$("#pageloading").hide();
+			eventRegister();
 			comboBoxData = Common.getSysEnume();
 			initForm();
 			initGrid();
-		},
-		query: function() {
-			
-		},
-		addData: function() {
-			
-		},
-		editData: function() {
-			
-		},
-		deleteData: function() {
-			
 		}
 	};
 }();

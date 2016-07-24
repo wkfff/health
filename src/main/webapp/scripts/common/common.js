@@ -2,7 +2,7 @@ var Common = function() {
 	return {
 		getFormData: function(containerObj) {
 			var childrens = containerObj.children();
-			var objStr = "{";
+			var objStr = "";
 			$.each(childrens, function(){
 				if ($(this).is(":text") || $(this).is(":password") || $(this).is("textarea")
 						|| ($(this).is(":hidden") && $(this).is("input"))) {
@@ -32,8 +32,11 @@ var Common = function() {
 						objStr += "\"" + ckId + "\":\"\",";
 				}
 			});
-			objStr = objStr.substring(0, objStr.length - 1) + "}";
-			return jQuery.parseJSON(objStr);
+			if (objStr != "") {
+				objStr = "{" + objStr.substring(0, objStr.length - 1) + "}";
+				return jQuery.parseJSON(objStr);
+			} else
+				return null;
 		},
 		fieldValidate: function(containerObj) {
 			
