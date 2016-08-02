@@ -7,13 +7,31 @@ var descInfoList = function() {
 	var comboBoxData;
 	var resultGrid;
 	
-	var gridColumns = [
-	  {display:'信息标题', name:'descTitle', align:'left', width:100, minWidth:60},
-	  {display:'信息类目', name:'descCategory', align:'left', width:100, minWidth:60},
-	  {display:'信息来源', name:'descSource', align:'left', width:100, minWidth:60},
-	  {display:'信息状态', name:'descStatus', align:'left', width:100, minWidth:60},
-	  {display:'创建日期', name:'createDate', align:'left', width:100, minWidth:60}
-	];
+	var getGridColumns = function() {
+		return [
+		  	  {display:'信息标题', name:'descTitle', align:'left', width:150},
+			  {display:'信息类目', name:'descCategory', align:'left', width:100,
+				  editor: { type: 'select', data: comboBoxData.desc_category, valueColumnName: 'value' },
+				  render: function(item) {
+					  var category = comboBoxData.desc_category;
+					  for (var i = 0; i < category.length; i++) {
+						  if (category[i].value == item.descCategory)
+							  return category[i].text;
+					  }
+				  }},
+			  {display:'信息来源', name:'descSource', align:'left', width:150},
+			  {display:'信息状态', name:'descStatus', align:'left', width:100,
+				  editor: { type: 'select', data: comboBoxData.desc_status, valueColumnName: 'value' },
+				  render: function(item) {
+					  var status = comboBoxData.desc_status;
+					  for (var i = 0; i < status.length; i++) {
+						  if (status[i].value == item.descStatus)
+							  return status[i].text;
+					  }
+				  }},
+			  {display:'创建日期', name:'createDate', align:'left', width:150}
+			];
+	}
 	
 	var initForm = function() {
 		$("#queryForm").ligerForm({
@@ -30,7 +48,7 @@ var descInfoList = function() {
 	
 	var initGrid = function() {
 		resultGrid = mainGrid.ligerGrid({
-			columns:gridColumns,
+			columns: getGridColumns(),
 			checkbox: true,
 			url: ctp + "/product/descList",
 			contentType: "application/json",

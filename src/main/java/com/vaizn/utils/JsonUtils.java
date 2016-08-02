@@ -1,6 +1,7 @@
 package com.vaizn.utils;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Map;
 
@@ -24,6 +25,7 @@ public class JsonUtils {
 	
 	public static String object2json(Object obj) {
 		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
 		try {
 			return objectMapper.writeValueAsString(obj);
 		} catch (JsonProcessingException e) {

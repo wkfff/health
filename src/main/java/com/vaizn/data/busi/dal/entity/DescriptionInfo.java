@@ -2,7 +2,11 @@ package com.vaizn.data.busi.dal.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vaizn.common.DateSerializerForDay;
 
 @Table(name = "t_description_info")
 public class DescriptionInfo implements Serializable {
@@ -57,6 +61,7 @@ public class DescriptionInfo implements Serializable {
         this.descSource = descSource;
     }
 
+    @JsonSerialize(using = DateSerializerForDay.class)
     public Date getCreateDate() {
         return createDate;
     }
