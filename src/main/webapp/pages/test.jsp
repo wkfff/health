@@ -4,15 +4,13 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>产品信息查询列表</title>
+  <title>测试</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%@ include file="/pages/common/baseFile.jsp"%>
   
   <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Aqua/css/ligerui-all.css" />
-  <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Gray/css/grid.css" />
   <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Tab/css/form.css" />
   <link rel="stylesheet" href="${ctp}/styles/common/common.css" />
-  <link rel="stylesheet" href="${ctp}/styles/common/gh-buttons.css" />
 </head>
 
 <body style="overflow:hidden;">
@@ -20,36 +18,26 @@
   <div id="queryHead" class="panel">
     <div class="panel-title">
       <span>查询条件</span>
-      <ul>
-        <li><a id="search" href="javascript:void(0);" class="button icon search">查询</a></li>
-      </ul>
     </div>
     <div class="panel-content" style="height:100px;">
       <form id="queryForm"></form>
     </div>
   </div>
-  <!-- 查询结果 -->
-  <div class="panel">
-    <div class="panel-title">
-      <span>查询结果</span>
-      <ul>
-        <li><a id="addBtn" href="javascript:void();" class="button icon add">新增</a></li>
-        <li><a id="editBtn" href="javascript:void();" class="button icon edit">修改</a></li>
-        <li><a id="delBtn" href="javascript:void();" class="button danger icon trash">删除</a></li>
-      </ul>
-    </div>
-    <div class="panel-content">
-      <div class="l-loading" style="display:block" id="pageloading"></div>
-      <div class="l-clear"></div>
-      <div id="maingrid"></div>
-      <div style="display:none;"></div>
-    </div>
-  </div>
 </body>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/core/base.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/ligerui.min.js"></script>
-<script type="text/javascript" src="${ctp}/scripts/products/descInfoList.js"></script>
 <script type="text/javascript">
-	descInfoList.onload();
+$(function(){
+	$("#queryForm").ligerForm({
+		inputWidth: 170, labelWidth: 90, space: 40,
+		fields: [
+		  {display: "信息标题", name: "descTitle", newline: false, type: "text"},
+		  {display: "信息状态", name: "descStatus", newline: false, type: "select", comboboxName: "descStatus", editor: {data: [{value:"10",text:"未发布"},{value:"11",text:"已发布"}]}},
+		  {display: "信息类目", name: "descCategory", newline: false, type: "select", comboboxName: "descCategory", editor: {data: [{value:"10",text:"原创"},{value:"11",text:"转载"}]}},
+		  {display: "创建开始日期", name: "createBeginDate", newline: true, type: "date"},
+		  {display: "创建结束日期", name: "createEndDate", newline: false, type: "date"}
+		]
+	});
+});
 </script>
 </html>

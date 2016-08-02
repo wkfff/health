@@ -20,6 +20,11 @@ public class CommonController extends BaseController {
 	@Autowired
 	private ISysEnumeService sysEnumeService;
 	
+	@RequestMapping(path = "/test", method = RequestMethod.GET)
+	public String testPage() throws Exception {
+		return "test";
+	}
+	
 	@RequestMapping(path = "/getSysEnume", method = RequestMethod.GET)
 	@ResponseBody
 	public BaseResponseDto getSysEnumeData() throws Exception {
