@@ -55,7 +55,7 @@ var descInfoList = function() {
 			delayLoad: true,
 			pageSize:30,
 			width: gridWidth - 5,
-			height: gridHeight - qh - 35 - 10
+			height: gridHeight - qh - 38 - 10
 		});
 	};
 	

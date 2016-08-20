@@ -20,9 +20,9 @@
   <div id="queryHead" class="panel">
     <div class="panel-title">
       <span>查询条件</span>
-      <ul>
-        <li><a id="search" href="javascript:void(0);" class="button icon search">查询</a></li>
-      </ul>
+      <div class="panel-button">
+        <a id="search" href="javascript:void(0);" class="button icon search">查询</a>
+      </div>
     </div>
     <div class="panel-content" style="height:100px;">
       <form id="queryForm"></form>
@@ -32,11 +32,11 @@
   <div class="panel">
     <div class="panel-title">
       <span>查询结果</span>
-      <ul>
-        <li><a id="addBtn" href="javascript:void();" class="button icon add">新增</a></li>
-        <li><a id="editBtn" href="javascript:void();" class="button icon edit">修改</a></li>
-        <li><a id="delBtn" href="javascript:void();" class="button danger icon trash">删除</a></li>
-      </ul>
+      <div class="panel-button">
+        <a id="addBtn" href="javascript:void();" class="button icon add">新增</a>
+        <a id="editBtn" href="javascript:void();" class="button icon edit">修改</a>
+        <a id="delBtn" href="javascript:void();" class="button danger icon trash">删除</a>
+      </div>
     </div>
     <div class="panel-content">
       <div class="l-loading" style="display:block" id="pageloading"></div>

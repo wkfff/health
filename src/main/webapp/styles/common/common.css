@@ -48,6 +48,13 @@ table {
 	margin: 0;
 }
 
+.panel-button {
+	position: relative;
+	display: inline-block;
+	margin: 5px;
+	float: right;
+}
+
 .panel .panel-title {
 	position: relative;
 	border-bottom: 2px solid #F63;
@@ -84,7 +91,7 @@ table {
 }
 
 .panel .panel-content {
-	overflow: hidden;
+	
 }
 
 .panel .panel-content form {
