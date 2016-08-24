@@ -33,9 +33,10 @@
     <div class="panel-title">
       <span>查询结果</span>
       <div class="panel-button">
-        <a id="addBtn" href="javascript:void();" class="button icon add">新增</a>
-        <a id="editBtn" href="javascript:void();" class="button icon edit">修改</a>
-        <a id="delBtn" href="javascript:void();" class="button danger icon trash">删除</a>
+        <a id="addBtn" href="javascript:void(0);" class="button icon add">新增</a>
+        <a id="editBtn" href="javascript:void(0);" class="button icon edit">修改</a>
+        <a id="delBtn" href="javascript:void(0);" class="button danger icon trash">删除</a>
+        <a id="publishBtn" href="javascript:void(0);" class="button icon comment">发布</a>
       </div>
     </div>
     <div class="panel-content">

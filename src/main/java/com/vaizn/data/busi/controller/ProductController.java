@@ -24,6 +24,11 @@ public class ProductController extends BaseController {
 		return "/products/descInfoList";
 	}
 	
+	@RequestMapping(path = "/desc/addModiPage", method = RequestMethod.GET)
+	public String descAddPage() throws Exception {
+		return "/products/addModiPage";
+	}
+	
 	@RequestMapping(path = "/descList", method = RequestMethod.POST)
 	@ResponseBody
 	public LigerPageVo<DescriptionInfo> descList(@RequestBody DescInfoRequest request) throws Exception {

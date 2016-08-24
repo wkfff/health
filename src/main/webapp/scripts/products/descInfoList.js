@@ -67,12 +67,16 @@ var descInfoList = function() {
 			resultGrid.loadServerData(datas);
 		});
 		$("#addBtn").click(function(){
-			
+			var url = ctp + "/product/desc/addModiPage";
+			window.open(url, "addModiPage", "height=500,width=900,top=100,left=200,resizable=no,location=no");
 		});
 		$("#editBtn").click(function(){
 			
 		});
 		$("#delBtn").click(function(){
+			
+		});
+		$("#publishBtn").click(function(){
 			
 		});
 	};
