@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Tab/css/form.css" />
   <link rel="stylesheet" href="${ctp}/styles/common/common.css" />
   <link rel="stylesheet" href="${ctp}/styles/common/gh-buttons.css" />
-  <link rel="stylesheet" href="${ctp}/styles/kindeditor/themes/default/default.css" />
 </head>
 
 <body style="overflow:hidden;">

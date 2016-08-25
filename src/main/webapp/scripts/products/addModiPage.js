@@ -9,8 +9,7 @@ var addModiPage = function(){
 		KindEditor.ready(function(K) {
 			editor = K.create('textarea[name="descDetail"]', {
 				resizeType : 0,
-				allowPreviewEmoticons : false,
-				allowImageUpload : false,
+				allowFileManager : true,
 				items : [
 					'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
 					'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
