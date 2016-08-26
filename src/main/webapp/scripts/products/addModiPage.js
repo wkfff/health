@@ -9,6 +9,7 @@ var addModiPage = function(){
 		KindEditor.ready(function(K) {
 			editor = K.create('textarea[name="descDetail"]', {
 				resizeType : 0,
+				uploadJson : ctp + '/common/imgUpload',
 				allowFileManager : true,
 				items : [
 					'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
@@ -16,6 +17,8 @@ var addModiPage = function(){
 					'insertunorderedlist', '|', 'emoticons', 'image', 'link']
 			});
 		});
+		var str = "<input type=\"hidden\" id=\"savePath\" name=\"savePath\" value=\"HpTZY+pKlEtIukdLABhrQWgf4WZ9Jj5CV86bCPfGfg4=\">";
+		$(".ke-dialog-row").append(str);
 	}
 	
 	var initForm = function() {

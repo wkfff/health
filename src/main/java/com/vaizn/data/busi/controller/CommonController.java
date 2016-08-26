@@ -1,11 +1,15 @@
 package com.vaizn.data.busi.controller;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.vaizn.common.AES;
 import com.vaizn.common.vo.SysEnumeVo;
 import com.vaizn.data.busi.service.ISysEnumeService;
 import com.vaizn.data.dto.common.BaseResponseDto;
@@ -22,6 +27,8 @@ import com.vaizn.data.dto.common.BaseResponseDto;
 @RequestMapping("/common")
 public class CommonController extends BaseController {
 
+	protected static Logger logger = LoggerFactory.getLogger(CommonController.class);
+	
 	@Autowired
 	private ISysEnumeService sysEnumeService;
 	
@@ -39,21 +46,63 @@ public class CommonController extends BaseController {
 	
 	@RequestMapping(path = "/fileUpload", method = RequestMethod.POST)
 	@ResponseBody
-	public BaseResponseDto fileUpload(@RequestParam(value="file",required=false) MultipartFile[] files,
-										HttpServletRequest request) throws Exception {
-		//应用路径
-		String pathRoot = request.getSession().getServletContext().getRealPath("");
+	public BaseResponseDto fileUpload(HttpServletRequest request, String savePath,
+			@RequestParam(value="file",required=false) MultipartFile[] files) throws Exception {
+		if (StringUtils.isNotBlank(savePath))
+			savePath = AES.decode(savePath);
+		else
+			savePath = "/attachment";
+		List<String> allowType = Arrays.asList("xls","xlsx","doc","docx","rar","text","pdf","chm");
 		for (MultipartFile file : files) {
-			if(!file.isEmpty()){
-				//获取文件类型，判断是否需过滤指定文件
-				String contentType=file.getContentType();
+			if (!file.isEmpty()) {
+				//文件类型
+				String fileType = file.getContentType();
+				//文件名
+				String fileName = file.getOriginalFilename();
 				//文件后缀
-				String fileName=contentType.substring(contentType.indexOf("/")+1);
-				//保存文件
-				file.transferTo(new File(pathRoot + "." + fileName));
+				String suffixes = fileName.substring(fileName.indexOf(".") + 1, fileName.length());
+				logger.info("==================上传的文件名称：{},文件类型：{},保存路径：{}==================",
+																		fileName, fileType, savePath);
+				if (allowType.contains(suffixes)) {
+					//保存文件
+					file.transferTo(new File(savePath + fileName));
+				} else {
+					return new BaseResponseDto(1001, "不允许上传" + suffixes + "文件", null);
+				}
 			}
 		}
 		
-		return new BaseResponseDto(1000, null, null);
+		return new BaseResponseDto(1000, "文件上传成功", null);
+	}
+	
+	@RequestMapping(path = "/imgUpload", method = RequestMethod.POST)
+	@ResponseBody
+	public BaseResponseDto imgUpload(HttpServletRequest request, String savePath,
+			@RequestParam(value="file",required=false) MultipartFile[] files) throws Exception {
+		if (StringUtils.isNotBlank(savePath))
+			savePath = AES.decode(savePath);
+		else
+			savePath = "/attachment";
+		List<String> allowType = Arrays.asList("image/jpeg","image/png","image/gif");
+		for (MultipartFile file : files) {
+			if (!file.isEmpty()) {
+				//文件类型
+				String fileType = file.getContentType();
+				//文件名
+				String fileName = file.getOriginalFilename();
+				//文件后缀
+				String suffixes = fileName.substring(fileName.indexOf(".") + 1, fileName.length());
+				logger.info("==================上传的文件名称：{},文件类型：{},保存路径：{}==================",
+																		fileName, fileType, savePath);
+				if (allowType.contains(fileType)) {
+					//保存文件
+					file.transferTo(new File(savePath + fileName));
+				} else {
+					return new BaseResponseDto(1001, "不允许上传" + suffixes + "文件", null);
+				}
+			}
+		}
+		
+		return new BaseResponseDto(1000, "文件上传成功", null);
 	}
 }
