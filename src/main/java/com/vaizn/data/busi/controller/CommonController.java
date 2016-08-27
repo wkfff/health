@@ -2,6 +2,7 @@ package com.vaizn.data.busi.controller;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,8 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.vaizn.common.AES;
 import com.vaizn.common.vo.SysEnumeVo;
+import com.vaizn.data.busi.dal.entity.SysAttachments;
+import com.vaizn.data.busi.service.IAttachmentsService;
 import com.vaizn.data.busi.service.ISysEnumeService;
 import com.vaizn.data.dto.common.BaseResponseDto;
+import com.vaizn.utils.CommonUtils;
 
 @Controller
 @RequestMapping("/common")
@@ -31,6 +35,8 @@ public class CommonController extends BaseController {
 	
 	@Autowired
 	private ISysEnumeService sysEnumeService;
+	@Autowired
+	private IAttachmentsService attachmentsService;
 	
 	@RequestMapping(path = "/test", method = RequestMethod.GET)
 	public String testPage() throws Exception {
@@ -51,7 +57,9 @@ public class CommonController extends BaseController {
 		if (StringUtils.isNotBlank(savePath))
 			savePath = AES.decode(savePath);
 		else
-			savePath = "/attachment";
+			savePath = "/attachment/";
+		SysAttachments attachment = null;
+		Date current = new Date();
 		List<String> allowType = Arrays.asList("xls","xlsx","doc","docx","rar","text","pdf","chm");
 		for (MultipartFile file : files) {
 			if (!file.isEmpty()) {
@@ -61,11 +69,21 @@ public class CommonController extends BaseController {
 				String fileName = file.getOriginalFilename();
 				//文件后缀
 				String suffixes = fileName.substring(fileName.indexOf(".") + 1, fileName.length());
+				//新文件名
+				String newFileName = CommonUtils.getUUID() + "." + suffixes;
 				logger.info("==================上传的文件名称：{},文件类型：{},保存路径：{}==================",
 																		fileName, fileType, savePath);
 				if (allowType.contains(suffixes)) {
+					attachment = new SysAttachments();
+					attachment.setAttachmentType("20");
+					attachment.setFilePath(savePath + newFileName);
+					attachment.setOldFileName(fileName);
+					attachment.setNewFileName(newFileName);
+					attachment.setFileSize(file.getSize());
+					attachment.setUploadDate(current);
+					attachmentsService.insertSelective(attachment);
 					//保存文件
-					file.transferTo(new File(savePath + fileName));
+					file.transferTo(new File(savePath + newFileName));
 				} else {
 					return new BaseResponseDto(1001, "不允许上传" + suffixes + "文件", null);
 				}
@@ -82,7 +100,9 @@ public class CommonController extends BaseController {
 		if (StringUtils.isNotBlank(savePath))
 			savePath = AES.decode(savePath);
 		else
-			savePath = "/attachment";
+			savePath = "/attachment/";
+		SysAttachments attachment = null;
+		Date current = new Date();
 		List<String> allowType = Arrays.asList("image/jpeg","image/png","image/gif");
 		for (MultipartFile file : files) {
 			if (!file.isEmpty()) {
@@ -92,11 +112,21 @@ public class CommonController extends BaseController {
 				String fileName = file.getOriginalFilename();
 				//文件后缀
 				String suffixes = fileName.substring(fileName.indexOf(".") + 1, fileName.length());
+				//新文件名
+				String newFileName = CommonUtils.getUUID() + "." + suffixes;
 				logger.info("==================上传的文件名称：{},文件类型：{},保存路径：{}==================",
 																		fileName, fileType, savePath);
 				if (allowType.contains(fileType)) {
+					attachment = new SysAttachments();
+					attachment.setAttachmentType("10");
+					attachment.setFilePath(savePath + newFileName);
+					attachment.setOldFileName(fileName);
+					attachment.setNewFileName(newFileName);
+					attachment.setFileSize(file.getSize());
+					attachment.setUploadDate(current);
+					attachmentsService.insertSelective(attachment);
 					//保存文件
-					file.transferTo(new File(savePath + fileName));
+					file.transferTo(new File(savePath + newFileName));
 				} else {
 					return new BaseResponseDto(1001, "不允许上传" + suffixes + "文件", null);
 				}

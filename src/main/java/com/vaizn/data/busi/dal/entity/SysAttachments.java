@@ -15,7 +15,7 @@ public class SysAttachments implements Serializable {
 
     private String busiId;
 
-    private Integer attachmentType;
+    private String attachmentType;
 
     private String oldFileName;
 
@@ -23,7 +23,7 @@ public class SysAttachments implements Serializable {
 
     private String filePath;
 
-    private Integer fileSize;
+    private Long fileSize;
 
     private String creator;
 
@@ -36,14 +36,6 @@ public class SysAttachments implements Serializable {
     public void setAttachmentId(String attachmentId) {
         this.attachmentId = attachmentId;
     }
-
-    public Integer getAttachmentType() {
-		return attachmentType;
-	}
-
-	public void setAttachmentType(Integer attachmentType) {
-		this.attachmentType = attachmentType;
-	}
 
 	public String getBusiId() {
         return busiId;
@@ -77,14 +69,6 @@ public class SysAttachments implements Serializable {
         this.filePath = filePath;
     }
 
-    public Integer getFileSize() {
-        return fileSize;
-    }
-
-    public void setFileSize(Integer fileSize) {
-        this.fileSize = fileSize;
-    }
-
     public String getCreator() {
         return creator;
     }
@@ -100,4 +84,20 @@ public class SysAttachments implements Serializable {
     public void setUploadDate(Date uploadDate) {
         this.uploadDate = uploadDate;
     }
+
+	public String getAttachmentType() {
+		return attachmentType;
+	}
+
+	public void setAttachmentType(String attachmentType) {
+		this.attachmentType = attachmentType;
+	}
+
+	public Long getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(Long fileSize) {
+		this.fileSize = fileSize;
+	}
 }

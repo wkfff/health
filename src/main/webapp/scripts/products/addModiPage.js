@@ -1,5 +1,5 @@
 var addModiPage = function(){
-	
+	//产品信息文章上传的图片初始标识为'productDescImg'
 	var comboBoxData;
 	
 	var initTextArea = function() {
@@ -10,6 +10,7 @@ var addModiPage = function(){
 			editor = K.create('textarea[name="descDetail"]', {
 				resizeType : 0,
 				uploadJson : ctp + '/common/imgUpload',
+				uploadPath : 'HpTZY+pKlEtIukdLABhrQVo7mVmaoXvFVi9/4yWxGuA=',
 				allowFileManager : true,
 				items : [
 					'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
@@ -17,8 +18,6 @@ var addModiPage = function(){
 					'insertunorderedlist', '|', 'emoticons', 'image', 'link']
 			});
 		});
-		var str = "<input type=\"hidden\" id=\"savePath\" name=\"savePath\" value=\"HpTZY+pKlEtIukdLABhrQWgf4WZ9Jj5CV86bCPfGfg4=\">";
-		$(".ke-dialog-row").append(str);
 	}
 	
 	var initForm = function() {

@@ -1,8 +1,6 @@
 package com.vaizn.data.busi.controller;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,7 +25,6 @@ import com.vaizn.utils.CommonUtils;
 @SessionAttributes("user")
 public class SignController extends BaseController {
 
-	private static final Logger logger = LoggerFactory.getLogger(SignController.class);
 	@Autowired
 	private IUserService userService;
 	
