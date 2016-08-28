@@ -22,7 +22,6 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request,
 							HttpServletResponse response, Object handler) throws Exception {
 		String uri = request.getRequestURI();
-		logger.info("请求地址：{}", uri);
 		//不拦截静态资源
 		if (uri.endsWith(".js") || uri.endsWith(".css")
 				|| uri.endsWith(".jpg")

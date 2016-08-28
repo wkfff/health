@@ -15,6 +15,7 @@ KindEditor.plugin('image', function(K) {
 		allowFileManager = K.undef(self.allowFileManager, false),
 		uploadJson = K.undef(self.uploadJson, self.basePath + 'php/upload_json.php'),
 		uploadPath = K.undef(self.uploadPath, ''),
+		busiId = K.undef(self.busiId, '-1'),
 		imageTabIndex = K.undef(self.imageTabIndex, 0),
 		imgPath = self.pluginsPath + 'image/images/',
 		extraParams = K.undef(self.extraFileUploadParams, {}),
@@ -78,6 +79,7 @@ KindEditor.plugin('image', function(K) {
 			'<form class="ke-upload-area ke-form" method="post" enctype="multipart/form-data" target="' + target + '" action="' + K.addParam(uploadJson, 'dir=image') + '">',
 			//file
 			'<input type="hidden" id="savePath" name="savePath" value="' + uploadPath + '">',
+			'<input type="hidden" id="busiId" name="busiId" value="' + busiId + '">',
 			'<div class="ke-dialog-row">',
 			hiddenElements.join(''),
 			'<label style="width:60px;">' + lang.localUrl + '</label>',

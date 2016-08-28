@@ -11,7 +11,7 @@ public class BaseResponseDto implements Serializable {
 	 * 1000:操作成功<br>
 	 * 1001:操作失败
 	 */
-	private Integer code;
+	private String code;
 	
 	private String message;
 	
@@ -21,21 +21,21 @@ public class BaseResponseDto implements Serializable {
 		
 	}
 
-	public BaseResponseDto(Integer code, String message) {
+	public BaseResponseDto(String code, String message) {
 		this.code = code;
 		this.message = message;
 	}
 
-	public BaseResponseDto(Integer code, String message, Object data) {
+	public BaseResponseDto(String code, String message, Object data) {
 		this(code, message);
 		this.data = data;
 	}
 
-	public Integer getCode() {
+	public String getCode() {
 		return code;
 	}
 
-	public void setCode(Integer code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 

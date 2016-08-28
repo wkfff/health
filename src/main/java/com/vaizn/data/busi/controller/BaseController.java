@@ -15,7 +15,7 @@ public class BaseController {
 	@ResponseBody
 	public BaseResponseDto handleException(HttpServletRequest request, Exception e) {
 		e.printStackTrace();
-		return new BaseResponseDto(1001, "服务器请求失败");
+		return new BaseResponseDto("1001", "服务器请求失败");
 	}
 	
 }

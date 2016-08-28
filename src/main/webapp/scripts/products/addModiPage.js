@@ -10,7 +10,8 @@ var addModiPage = function(){
 			editor = K.create('textarea[name="descDetail"]', {
 				resizeType : 0,
 				uploadJson : ctp + '/common/imgUpload',
-				uploadPath : 'HpTZY+pKlEtIukdLABhrQVo7mVmaoXvFVi9/4yWxGuA=',
+				uploadPath : 'Q3XLUky4lBkEfKUIuCkMqol+9YRjTN8TMYc9PBgtGso=',
+				busiId: 'productDescImg',
 				allowFileManager : true,
 				items : [
 					'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',

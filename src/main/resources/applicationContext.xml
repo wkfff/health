@@ -104,10 +104,10 @@
 	<bean id="applicationContextUtils" class="com.vaizn.utils.ApplicationContextUtils"></bean>
 
     <!-- Spring提供的基于的Ehcache实现的缓存管理器 -->
-	<bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">  
-		<property name="configLocation" value="classpath:/ehcache.xml"/>  
-	</bean>  
-	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">  
-		<property name="cacheManager" ref="cacheManagerFactory"/>  
+	<bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:/ehcache.xml"/>
+	</bean>
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="cacheManagerFactory"/>
 	</bean>
 </beans>

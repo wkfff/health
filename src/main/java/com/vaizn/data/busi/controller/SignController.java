@@ -41,17 +41,17 @@ public class SignController extends BaseController {
 		String userAccount = signInData.getUserAccount();
 		String userPassword = signInData.getUserPassword();
 		if (StringUtils.isBlank(userAccount) || StringUtils.isBlank(userPassword)) {
-			response.setCode(1001);
+			response.setCode("1001");
 			response.setMessage("账号和密码不能为空！");
 		} else {
 			signInData.setUserPassword(CommonUtils.encodeMD5(signInData.getUserPassword()));
 			SysUser user = userService.checkSignInUser(signInData);
 			if (null == user) {
-				response.setCode(1001);
+				response.setCode("1001");
 				response.setMessage("账号或密码错误！");
 			} else {
 				model.addAttribute("user", user);
-				response.setCode(1000);
+				response.setCode("1000");
 				response.setMessage("登录成功！");
 			}
 		}
