@@ -19,7 +19,7 @@ public class SysUser implements Serializable {
 
     private String userName;
 
-    private Integer userStatus;
+    private String userStatus;
 
     private Date createDate;
 
@@ -63,11 +63,11 @@ public class SysUser implements Serializable {
         this.createDate = createDate;
     }
 
-	public Integer getUserStatus() {
+	public String getUserStatus() {
 		return userStatus;
 	}
 
-	public void setUserStatus(Integer userStatus) {
+	public void setUserStatus(String userStatus) {
 		this.userStatus = userStatus;
 	}
 }

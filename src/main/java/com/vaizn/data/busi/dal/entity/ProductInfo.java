@@ -13,9 +13,7 @@ public class ProductInfo implements Serializable {
     @GeneratedValue(generator="UUID")
     private String productId;
 
-    private String categoryCode;
-
-    private String categoryName;
+    private String productCategory;
 
     private String brandName;
 
@@ -65,21 +63,13 @@ public class ProductInfo implements Serializable {
         this.productId = productId;
     }
 
-    public String getCategoryCode() {
-        return categoryCode;
-    }
+    public String getProductCategory() {
+		return productCategory;
+	}
 
-    public void setCategoryCode(String categoryCode) {
-        this.categoryCode = categoryCode;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
+	}
 
     public String getBrandName() {
         return brandName;
