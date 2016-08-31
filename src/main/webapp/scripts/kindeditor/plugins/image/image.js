@@ -192,25 +192,29 @@ KindEditor.plugin('image', function(K) {
 			form : K('.ke-form', div),
 			target : target,
 			width: 60,
-			afterUpload : function(data) {
+			afterUpload : function(backdata) {
 				dialog.hideLoading();
-				if (data.error === 0) {
-					var url = data.url;
+				/**
+				 * 由于原来的error===0
+				 * 改为现在的code==='1000'
+				 */
+				if (backdata.code == '1000') {
+					var url = backdata.data[0];
 					if (formatUploadUrl) {
 						url = K.formatUrl(url, 'absolute');
 					}
 					if (self.afterUpload) {
-						self.afterUpload.call(self, url, data, name);
+						self.afterUpload.call(self, url, backdata, name);
 					}
 					if (!fillDescAfterUploadImage) {
-						clickFn.call(self, url, data.title, data.width, data.height, data.border, data.align);
+						clickFn.call(self, url, backdata.title, backdata.width, backdata.height, backdata.border, backdata.align);
 					} else {
 						K(".ke-dialog-row #remoteUrl", div).val(url);
 						K(".ke-tabs-li", div)[0].click();
 						K(".ke-refresh-btn", div).click();
 					}
 				} else {
-					alert(data.message);
+					alert(backdata.message);
 				}
 			},
 			afterError : function(html) {

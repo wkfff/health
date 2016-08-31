@@ -13,5 +13,5 @@ public interface IAttachmentsService extends IBaseService<SysAttachments> {
 	 * @return
 	 * @throws BaseException
 	 */
-	public BaseResponseDto exeCreateAttachments(AttachmentsRequestDto dto) throws BaseException;
+	public BaseResponseDto exeCreateAttachments(AttachmentsRequestDto dto, String contextPath) throws BaseException;
 }

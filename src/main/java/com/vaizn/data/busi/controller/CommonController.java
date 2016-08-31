@@ -65,7 +65,7 @@ public class CommonController extends BaseController {
 		dto.setSavePath(savePath);
 		dto.setFiles(files);
 		
-		return attachmentsService.exeCreateAttachments(dto);
+		return attachmentsService.exeCreateAttachments(dto, request.getContextPath());
 	}
 	
 	@RequestMapping(path = "/imgUpload", method = RequestMethod.POST)
@@ -86,6 +86,6 @@ public class CommonController extends BaseController {
 		dto.setSavePath(savePath);
 		dto.setFiles(files);
 		
-		return attachmentsService.exeCreateAttachments(dto);
+		return attachmentsService.exeCreateAttachments(dto, request.getContextPath());
 	}
 }

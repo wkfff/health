@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.vaizn.data.busi.dal.entity.SysUser;
+import com.vaizn.utils.LoginUtils;
 
 public class SessionInterceptor extends HandlerInterceptorAdapter {
 
@@ -41,8 +42,10 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 			logger.info("==================登录超时,跳转到登录界面=================");
 			request.getRequestDispatcher("/pages/common/signIn.jsp").forward(request, response);
 			return false;
-		} else
+		} else {
+			LoginUtils.initLoginUser(user);
 			return true;
+		}
 	}
 	
 	/**

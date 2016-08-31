@@ -3,7 +3,7 @@ package com.vaizn.data.busi.controller;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,7 +35,7 @@ public class SignController extends BaseController {
 	
 	@RequestMapping(path = "/doSignIn", method=RequestMethod.POST)
 	@ResponseBody
-	public BaseResponseDto signIn(@RequestBody SignInDataVo signInData, ModelMap model)
+	public BaseResponseDto signIn(@RequestBody SignInDataVo signInData, Model model)
 												throws Exception {
 		BaseResponseDto response = new BaseResponseDto();
 		String userAccount = signInData.getUserAccount();
