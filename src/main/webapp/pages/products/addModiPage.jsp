@@ -33,6 +33,7 @@
 <script type="text/javascript" src="${ctp}/scripts/kindeditor/lang/zh_CN.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/products/addModiPage.js"></script>
 <script type="text/javascript">
+	var userAccount = '${empty userAccount?"":userAccount}';
 	addModiPage.onload();
 </script>
 </html>

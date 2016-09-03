@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class SysEnumeVo implements Serializable {
 
 	private static final long serialVersionUID = -5800509993075755081L;
-
+	
 	private String id;
 	
 	private String value;

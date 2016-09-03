@@ -2,6 +2,7 @@ package com.vaizn.data.busi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +13,7 @@ import com.vaizn.common.vo.LigerPageVo;
 import com.vaizn.data.busi.dal.entity.DescriptionInfo;
 import com.vaizn.data.busi.service.promotion.IDescriptionService;
 import com.vaizn.data.dto.promotion.DescInfoRequest;
+import com.vaizn.utils.LoginUtils;
 
 @Controller
 @RequestMapping("/product")
@@ -25,7 +27,8 @@ public class ProductController extends BaseController {
 	}
 	
 	@RequestMapping(path = "/desc/addModiPage", method = RequestMethod.GET)
-	public String descAddPage() throws Exception {
+	public String descAddPage(Model model) throws Exception {
+		model.addAttribute("userAccount", LoginUtils.currentLoginUser().getUserAccount());
 		return "/products/addModiPage";
 	}
 	

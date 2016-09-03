@@ -38,8 +38,8 @@ var descInfoList = function() {
 			inputWidth: 170, labelWidth: 90, space: 40,
 			fields: [
 			  {display: "信息标题", name: "descTitle", newline: false, type: "text"},
-			  {display: "信息状态", name: "descStatus", newline: false, type: "select", comboboxName: "descStatus", editor: {data: comboBoxData.desc_status}},
-			  {display: "信息类目", name: "descCategory", newline: false, type: "select", comboboxName: "descCategory", editor: {data: comboBoxData.desc_category}},
+			  {display: "信息状态", name: "descStatus", newline: false, type: "select", comboboxName: "descStatus", editor: {data: comboBoxData.desc_status}, options: {valueField: "value"}},
+			  {display: "信息类目", name: "descCategory", newline: false, type: "select", comboboxName: "descCategory", editor: {data: comboBoxData.desc_category}, options: {valueField: "value"}},
 			  {display: "创建开始日期", name: "createBeginDate", newline: true, type: "date"},
 			  {display: "创建结束日期", name: "createEndDate", newline: false, type: "date"}
 			]
