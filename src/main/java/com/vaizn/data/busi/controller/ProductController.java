@@ -12,7 +12,10 @@ import com.github.pagehelper.PageInfo;
 import com.vaizn.common.vo.LigerPageVo;
 import com.vaizn.data.busi.dal.entity.DescriptionInfo;
 import com.vaizn.data.busi.service.promotion.IDescriptionService;
-import com.vaizn.data.dto.promotion.DescInfoRequest;
+import com.vaizn.data.dto.common.BaseResponseDto;
+import com.vaizn.data.dto.product.DescInfoRequest;
+import com.vaizn.data.dto.product.DescSaveRequest;
+import com.vaizn.utils.JsonUtils;
 import com.vaizn.utils.LoginUtils;
 
 @Controller
@@ -39,5 +42,14 @@ public class ProductController extends BaseController {
 		LigerPageVo<DescriptionInfo> ligerPage = new LigerPageVo<DescriptionInfo>(pages.getList(), pages.getTotal());
 		
 		return ligerPage;
+	}
+	
+	@RequestMapping(path = "/saveProductDesc", method = RequestMethod.POST)
+	@ResponseBody
+	public BaseResponseDto saveProductDesc(@RequestBody DescSaveRequest request) throws Exception {
+		BaseResponseDto response = new BaseResponseDto("1000", "保存成功", null);
+		System.out.println("==================="+JsonUtils.object2json(request));
+		
+		return response;
 	}
 }

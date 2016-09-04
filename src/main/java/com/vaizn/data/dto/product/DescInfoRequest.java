@@ -1,4 +1,4 @@
-package com.vaizn.data.dto.promotion;
+package com.vaizn.data.dto.product;
 
 import java.io.Serializable;
 

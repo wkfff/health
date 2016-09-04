@@ -3,13 +3,13 @@ var addModiPage = function(){
 	var comboBoxData;
 	
 	var formObj;
+	var kindEditor;
 	
 	var initTextArea = function() {
 		var textArea = "<textarea name='descDetail' style='width:880px;height:370px;visibility:hidden;'></textarea>";
 		$("#dataForm").append(textArea);
-		var editor;
 		KindEditor.ready(function(K) {
-			editor = K.create('textarea[name="descDetail"]', {
+			kindEditor = K.create('textarea[name="descDetail"]', {
 				resizeType : 0,
 				uploadJson : ctp + '/common/imgUpload',
 				uploadPath : 'Q3XLUky4lBkEfKUIuCkMqol+9YRjTN8TMYc9PBgtGso=',
@@ -48,8 +48,12 @@ var addModiPage = function(){
 			initTextArea();
 		},
 		submitData: function() {
+			var url = ctp + "/product/saveProductDesc";
 			var formData = formObj.getData();
-			alert(JSON.stringify(formData));
+			var editorVal = kindEditor.html();
+			Common.post(url, $.extend({descDetail: editorVal}, formData), function(backdata) {
+				
+			});
 		}
 	}
 }();

@@ -16,7 +16,7 @@ import com.vaizn.data.busi.dal.entity.DescriptionInfo;
 import com.vaizn.data.busi.dal.mapper.DescriptionInfoMapper;
 import com.vaizn.data.busi.service.BaseService;
 import com.vaizn.data.busi.service.promotion.IDescriptionService;
-import com.vaizn.data.dto.promotion.DescInfoRequest;
+import com.vaizn.data.dto.product.DescInfoRequest;
 
 @Service
 public class DescriptionService extends BaseService<DescriptionInfo> implements IDescriptionService {

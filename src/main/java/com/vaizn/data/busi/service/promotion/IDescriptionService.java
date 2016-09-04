@@ -3,7 +3,7 @@ package com.vaizn.data.busi.service.promotion;
 import com.github.pagehelper.PageInfo;
 import com.vaizn.data.busi.dal.entity.DescriptionInfo;
 import com.vaizn.data.busi.service.IBaseService;
-import com.vaizn.data.dto.promotion.DescInfoRequest;
+import com.vaizn.data.dto.product.DescInfoRequest;
 
 public interface IDescriptionService extends IBaseService<DescriptionInfo> {
 
