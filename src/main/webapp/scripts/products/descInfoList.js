@@ -9,8 +9,9 @@ var descInfoList = function() {
 	
 	var getGridColumns = function() {
 		return [
-		  	  {display:'信息标题', name:'descTitle', align:'left', width:150},
-			  {display:'信息类目', name:'descCategory', align:'left', width:100,
+		      {display:'主键', name:'descId', align:'left', width:100, hide: true},
+		  	  {display:'信息标题', name:'descTitle', align:'left', width:300},
+			  {display:'信息类目', name:'descCategory', align:'left', width:120,
 				  editor: { type: 'select', data: comboBoxData.desc_category, valueColumnName: 'value' },
 				  render: function(item) {
 					  var category = comboBoxData.desc_category;
@@ -19,8 +20,17 @@ var descInfoList = function() {
 							  return category[i].text;
 					  }
 				  }},
-			  {display:'信息来源', name:'descSource', align:'left', width:150},
-			  {display:'信息状态', name:'descStatus', align:'left', width:100,
+			  {display:'信息来源', name:'descSource', align:'left', width:150,
+				  editor: { type: 'select', data: comboBoxData.desc_source, valueColumnName: 'value' },
+				  render: function(item) {
+					  var source = comboBoxData.desc_source;
+					  for (var i = 0; i < source.length; i++) {
+						  if (source[i].value == item.descSource)
+							  return source[i].text;
+					  }
+				  }
+			  },
+			  {display:'信息状态', name:'descStatus', align:'left', width:120,
 				  editor: { type: 'select', data: comboBoxData.desc_status, valueColumnName: 'value' },
 				  render: function(item) {
 					  var status = comboBoxData.desc_status;
@@ -71,13 +81,28 @@ var descInfoList = function() {
 			window.open(url, "addModiPage", "height=500,width=900,top=100,left=200,resizable=no,location=no");
 		});
 		$("#editBtn").click(function(){
-			
+			var rows = resultGrid.getSelectedRows();
+			if (rows.length > 0) {
+				alert(rows[0].descId);
+			} else {
+				
+			}
 		});
 		$("#delBtn").click(function(){
-			
+			var rows = resultGrid.getSelectedRows();
+			if (rows.length > 0) {
+				alert(rows[0].descId);
+			} else {
+				
+			}
 		});
 		$("#publishBtn").click(function(){
-			
+			var rows = resultGrid.getSelectedRows();
+			if (rows.length > 0) {
+				alert(rows[0].descId);
+			} else {
+				
+			}
 		});
 	};
 	

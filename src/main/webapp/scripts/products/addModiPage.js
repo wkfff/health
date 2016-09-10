@@ -51,8 +51,14 @@ var addModiPage = function(){
 			var url = ctp + "/product/saveProductDesc";
 			var formData = formObj.getData();
 			var editorVal = kindEditor.html();
+			var processBar = $.ligerDialog.waitting("数据正常保存中,请稍等...");
 			Common.post(url, $.extend({descDetail: editorVal}, formData), function(backdata) {
-				
+				processBar.close();
+				if (backdata.code == '1000') {
+					$.ligerDialog.success(backdata.message);
+				} else if (backdata.code == '1001') {
+					$.ligerDialog.error(backdata.message);
+				}
 			});
 		}
 	}

@@ -25,7 +25,7 @@ public class DescriptionInfo implements Serializable {
 
     private Date createDate;
 
-    private Integer descStatus;
+    private String descStatus;
 
     private String descDetail;
 
@@ -70,11 +70,11 @@ public class DescriptionInfo implements Serializable {
         this.createDate = createDate;
     }
 
-	public Integer getDescStatus() {
+	public String getDescStatus() {
 		return descStatus;
 	}
 
-	public void setDescStatus(Integer descStatus) {
+	public void setDescStatus(String descStatus) {
 		this.descStatus = descStatus;
 	}
 

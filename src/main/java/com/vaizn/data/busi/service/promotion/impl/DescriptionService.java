@@ -1,5 +1,6 @@
 package com.vaizn.data.busi.service.promotion.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,11 +13,14 @@ import tk.mybatis.mapper.entity.Example.Criteria;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.vaizn.common.BaseException;
 import com.vaizn.data.busi.dal.entity.DescriptionInfo;
 import com.vaizn.data.busi.dal.mapper.DescriptionInfoMapper;
 import com.vaizn.data.busi.service.BaseService;
 import com.vaizn.data.busi.service.promotion.IDescriptionService;
+import com.vaizn.data.dto.common.BaseResponseDto;
 import com.vaizn.data.dto.product.DescInfoRequest;
+import com.vaizn.data.dto.product.DescSaveRequest;
 
 @Service
 public class DescriptionService extends BaseService<DescriptionInfo> implements IDescriptionService {
@@ -48,6 +52,21 @@ public class DescriptionService extends BaseService<DescriptionInfo> implements 
 		List<DescriptionInfo> list = descriptionInfoMapper.selectByExample(example);
 		
 		return new PageInfo<DescriptionInfo>(list);
+	}
+
+	@Override
+	public BaseResponseDto saveDescInfoData(DescSaveRequest request) throws BaseException {
+		BaseResponseDto response = new BaseResponseDto("1000", "保存成功");
+		DescriptionInfo record = new DescriptionInfo();
+		record.setDescTitle(request.getDescTitle());
+		record.setDescSource(request.getDescSource());
+		record.setDescCategory(request.getDescCategory());
+		record.setDescDetail(request.getDescDetail());
+		record.setDescStatus("10");
+		record.setCreateDate(new Date());
+		descriptionInfoMapper.insertSelective(record);
+		
+		return response;
 	}
 
 }
