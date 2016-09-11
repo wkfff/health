@@ -3,6 +3,7 @@ var addModiPage = function(){
 	var comboBoxData;
 	
 	var formObj;
+	var pageData;
 	var kindEditor;
 	
 	var initTextArea = function() {
@@ -20,6 +21,9 @@ var addModiPage = function(){
 					'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
 					'insertunorderedlist', '|', 'emoticons', 'image', 'link']
 			});
+			//初始化值
+			if (typeof pageData.formData.descDetail != 'undefined')
+				kindEditor.html(pageData.formData.descDetail);
 		});
 	}
 	
@@ -34,6 +38,10 @@ var addModiPage = function(){
 		});
 	}
 	
+	var initFormData = function() {
+		formObj.setData(pageData.formData);
+	}
+	
 	var eventRegister = function() {
 		$("#submitBtn").click(function(){
 			addModiPage.submitData();
@@ -41,21 +49,27 @@ var addModiPage = function(){
 	}
 	
 	return {
-		onload: function() {
+		onload: function(initPageObj) {
+			pageData = $.extend({}, initPageObj);
 			eventRegister();
 			comboBoxData = Common.getSysEnume();
 			initForm();
 			initTextArea();
+			initFormData();
 		},
 		submitData: function() {
 			var url = ctp + "/product/saveProductDesc";
 			var formData = formObj.getData();
 			var editorVal = kindEditor.html();
-			var processBar = $.ligerDialog.waitting("数据正常保存中,请稍等...");
-			Common.post(url, $.extend({descDetail: editorVal}, formData), function(backdata) {
+			var descId = "";
+			if (typeof pageData.formData.descId != 'undefined')
+				descId = pageData.formData.descId;
+			var processBar = $.ligerDialog.waitting("数据正在保存中,请稍等...");
+			Common.post(url, $.extend({descId: descId, descDetail: editorVal}, formData), function(backdata) {
 				processBar.close();
 				if (backdata.code == '1000') {
 					$.ligerDialog.success(backdata.message);
+					window.close();
 				} else if (backdata.code == '1001') {
 					$.ligerDialog.error(backdata.message);
 				}

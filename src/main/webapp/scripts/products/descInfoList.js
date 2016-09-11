@@ -69,39 +69,117 @@ var descInfoList = function() {
 		});
 	};
 	
+	var loadGridData = function() {
+		var formObj = new liger.get("queryForm");
+		var datas = formObj.getData();
+		$.extend(datas, {"page":resultGrid.options.page, "pageSize":resultGrid.options.pageSize});
+		resultGrid.loadServerData(datas);
+	};
+	
 	var eventRegister = function() {
-		$("#search").click(function(){
-			var formObj = new liger.get("queryForm");
-			var datas = formObj.getData();
-			$.extend(datas, {"page":resultGrid.options.page, "pageSize":resultGrid.options.pageSize});
-			resultGrid.loadServerData(datas);
-		});
+		$("#search").click(loadGridData);
 		$("#addBtn").click(function(){
 			var url = ctp + "/product/desc/addModiPage";
 			window.open(url, "addModiPage", "height=500,width=900,top=100,left=200,resizable=no,location=no");
 		});
 		$("#editBtn").click(function(){
 			var rows = resultGrid.getSelectedRows();
-			if (rows.length > 0) {
-				alert(rows[0].descId);
-			} else {
-				
+			if (rows.length == 0) {
+				$.ligerDialog.alert('请选择一条记录', '提示', 'none');
+			} else if (rows.length > 1){
+				$.ligerDialog.alert('只能选择一条记录', '提示', 'none');
+			} else if (rows.length == 1) {
+				var descId = rows[0].descId;
+				var url = ctp + "/product/desc/addModiPage?descId=" + descId;
+				window.open(url, "addModiPage", "height=500,width=900,top=100,left=200,resizable=no,location=no");
 			}
 		});
 		$("#delBtn").click(function(){
 			var rows = resultGrid.getSelectedRows();
-			if (rows.length > 0) {
-				alert(rows[0].descId);
+			if (rows.length == 0) {
+				$.ligerDialog.alert('请选择一条记录', '提示', 'none');
 			} else {
-				
+				$.ligerDialog.confirm('确定删除选择的记录吗？', function(status){
+					if (status) {
+						var ids = [];
+						$.each(rows, function(index, item){
+							ids.push(item.descId);
+						});
+						var url = ctp + "/product/deleteProductDesc";
+						var processBar = $.ligerDialog.waitting("数据处理中...");
+						Common.post(url, ids, function(backdata){
+							processBar.close();
+							if (backdata.code == '1000') {
+								loadGridData();
+								$.ligerDialog.success(backdata.message);
+							} else if (backdata.code == '1001') {
+								$.ligerDialog.error(backdata.message);
+							}
+						});
+					}
+				});
 			}
 		});
 		$("#publishBtn").click(function(){
 			var rows = resultGrid.getSelectedRows();
-			if (rows.length > 0) {
-				alert(rows[0].descId);
+			if (rows.length == 0) {
+				$.ligerDialog.alert('请选择一条记录', '提示', 'none');
 			} else {
-				
+				$.ligerDialog.confirm('确定发布选择的记录吗？', function(status){
+					if (status) {
+						var ids = [];
+						$.each(rows, function(index, item){
+							if (item.descStatus == '10')
+								ids.push(item.descId);
+						});
+						if (ids.length == 0) {
+							$.ligerDialog.warn("请选择状态为'未发布'的记录");
+							return;
+						}
+						var url = ctp + "/product/updateDescStatus";
+						var processBar = $.ligerDialog.waitting("数据处理中...");
+						Common.post(url, {descIds: ids, descStatus: '11'}, function(backdata){
+							processBar.close();
+							if (backdata.code == '1000') {
+								loadGridData();
+								$.ligerDialog.success(backdata.message);
+							} else if (backdata.code == '1001') {
+								$.ligerDialog.error(backdata.message);
+							}
+						});
+					}
+				});
+			}
+		});
+		$("#disPublishBtn").click(function(){
+			var rows = resultGrid.getSelectedRows();
+			if (rows.length == 0) {
+				$.ligerDialog.alert('请选择一条记录', '提示', 'none');
+			} else {
+				$.ligerDialog.confirm('确定取消发布选择的记录吗？', function(status){
+					if (status) {
+						var ids = [];
+						$.each(rows, function(index, item){
+							if (item.descStatus != '10')
+								ids.push(item.descId);
+						});
+						if (ids.length == 0) {
+							$.ligerDialog.warn("请选择状态为'已发布'的记录");
+							return;
+						}
+						var url = ctp + "/product/updateDescStatus";
+						var processBar = $.ligerDialog.waitting("数据处理中...");
+						Common.post(url, {descIds: ids, descStatus: '10'}, function(backdata){
+							processBar.close();
+							if (backdata.code == '1000') {
+								loadGridData();
+								$.ligerDialog.success(backdata.message);
+							} else if (backdata.code == '1001') {
+								$.ligerDialog.error(backdata.message);
+							}
+						});
+					}
+				});
 			}
 		});
 	};

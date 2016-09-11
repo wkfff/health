@@ -37,6 +37,7 @@
         <a id="editBtn" href="javascript:void(0);" class="button icon edit">修改</a>
         <a id="delBtn" href="javascript:void(0);" class="button danger icon trash">删除</a>
         <a id="publishBtn" href="javascript:void(0);" class="button icon comment">发布</a>
+        <a id="disPublishBtn" href="javascript:void(0);" class="button icon comment">取消发布</a>
       </div>
     </div>
     <div class="panel-content">

@@ -34,6 +34,7 @@
 <script type="text/javascript" src="${ctp}/scripts/products/addModiPage.js"></script>
 <script type="text/javascript">
 	var userAccount = '${empty userAccount?"":userAccount}';
-	addModiPage.onload();
+	var descInfo = ${descInfo == null?"{}":descInfo};
+	addModiPage.onload({formData: descInfo});
 </script>
 </html>

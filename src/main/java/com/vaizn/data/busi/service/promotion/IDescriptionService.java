@@ -22,5 +22,21 @@ public interface IDescriptionService extends IBaseService<DescriptionInfo> {
 	 * @return
 	 * @throws BaseException
 	 */
-	BaseResponseDto saveDescInfoData(DescSaveRequest request) throws BaseException;
+	BaseResponseDto exeSaveDescInfoData(DescSaveRequest request) throws BaseException;
+	
+	/**
+	 * 删除信息文章
+	 * @param ids
+	 * @return
+	 * @throws BaseException
+	 */
+	BaseResponseDto exeDelDescInfoData(String... ids) throws BaseException;
+	
+	/**
+	 * 发布信息文章
+	 * @param ids
+	 * @return
+	 * @throws BaseException
+	 */
+	BaseResponseDto exePublishDescInfo(DescSaveRequest request) throws BaseException;
 }

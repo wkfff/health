@@ -10,4 +10,19 @@
     <result column="desc_status" property="descStatus" />
     <result column="desc_detail" property="descDetail" />
   </resultMap>
+  
+  <delete id="deleteDescByIds" parameterType="string">
+  	delete from t_description_info where desc_id in
+  	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+  		#{item}
+  	</foreach>
+  </delete>
+  
+  <update id="updateDescStatusByIds" parameterType="com.vaizn.data.dto.product.DescSaveRequest">
+  	update t_description_info set desc_status = #{descStatus} where desc_id in
+  	<foreach collection="descIds" index="index" item="item" open="(" separator="," close=")">
+  		#{item}
+  	</foreach>
+  </update>
+  
 </mapper>
