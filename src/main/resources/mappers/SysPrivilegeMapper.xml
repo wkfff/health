@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vaizn.data.busi.dal.mapper.SysPrivilegeMapper" >
+  <resultMap id="BaseResultMap" type="com.vaizn.data.busi.dal.entity.SysPrivilege" >
+    <id column="privilege_id" property="privilegeId" jdbcType="VARCHAR" />
+    <result column="privilege_master" property="privilegeMaster" jdbcType="VARCHAR" />
+    <result column="master_code" property="masterCode" jdbcType="VARCHAR" />
+    <result column="privilege_access" property="privilegeAccess" jdbcType="VARCHAR" />
+    <result column="access_code" property="accessCode" jdbcType="VARCHAR" />
+    <result column="privilege_operator" property="privilegeOperator" jdbcType="VARCHAR" />
+    <result column="privilege_creator" property="privilegeCreator" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="privilege_moditor" property="privilegeModitor" jdbcType="VARCHAR" />
+    <result column="modi_date" property="modiDate" jdbcType="DATE" />
+  </resultMap>
+</mapper>

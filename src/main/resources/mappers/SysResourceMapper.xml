@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vaizn.data.busi.dal.mapper.SysResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.vaizn.data.busi.dal.entity.SysResource" >
+    <id column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+    <result column="resource_name" property="resourceName" jdbcType="VARCHAR" />
+    <result column="resource_code" property="resourceCode" jdbcType="VARCHAR" />
+    <result column="resource_type" property="resourceType" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+    <result column="resource_url" property="resourceUrl" jdbcType="VARCHAR" />
+    <result column="resource_status" property="resourceStatus" jdbcType="VARCHAR" />
+    <result column="resource_order" property="resourceOrder" jdbcType="TINYINT" />
+    <result column="module_code" property="moduleCode" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="moditor" property="moditor" jdbcType="VARCHAR" />
+    <result column="modi_date" property="modiDate" jdbcType="DATE" />
+  </resultMap>
+</mapper>

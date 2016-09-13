@@ -20,6 +20,10 @@ public class SysUser implements Serializable {
     private String userName;
 
     private String userStatus;
+    
+    private String userMobile;
+    
+    private String userEmail;
 
     private Date createDate;
 
@@ -69,5 +73,21 @@ public class SysUser implements Serializable {
 
 	public void setUserStatus(String userStatus) {
 		this.userStatus = userStatus;
+	}
+
+	public String getUserMobile() {
+		return userMobile;
+	}
+
+	public void setUserMobile(String userMobile) {
+		this.userMobile = userMobile;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 }
