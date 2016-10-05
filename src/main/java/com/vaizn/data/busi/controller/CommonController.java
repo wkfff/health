@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.vaizn.common.AES;
 import com.vaizn.common.vo.SysEnumeVo;
 import com.vaizn.data.busi.service.IAttachmentsService;
+import com.vaizn.data.busi.service.ICommonService;
 import com.vaizn.data.busi.service.ISysEnumeService;
 import com.vaizn.data.dto.common.AttachmentsRequestDto;
 import com.vaizn.data.dto.common.BaseResponseDto;
@@ -34,10 +35,17 @@ public class CommonController extends BaseController {
 	private ISysEnumeService sysEnumeService;
 	@Autowired
 	private IAttachmentsService attachmentsService;
+	@Autowired
+	private ICommonService commonService;
 	
 	@RequestMapping(path = "/test", method = RequestMethod.GET)
 	public String testPage() throws Exception {
 		return "test";
+	}
+	
+	@RequestMapping(path = "/main", method = RequestMethod.GET)
+	public String mainPage() throws Exception {
+		return "main";
 	}
 	
 	@RequestMapping(path = "/getSysEnume", method = RequestMethod.GET)
@@ -87,5 +95,11 @@ public class CommonController extends BaseController {
 		dto.setFiles(files);
 		
 		return attachmentsService.exeCreateAttachments(dto, request.getContextPath());
+	}
+	
+	@RequestMapping(path = "/getUserMenus", method = RequestMethod.POST)
+	@ResponseBody
+	public BaseResponseDto getUserMenus() throws Exception {
+		return new BaseResponseDto("1000", "", commonService.getUserMenus());
 	}
 }

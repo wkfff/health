@@ -9,6 +9,7 @@
     <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
     <result column="resource_url" property="resourceUrl" jdbcType="VARCHAR" />
     <result column="resource_status" property="resourceStatus" jdbcType="VARCHAR" />
+    <result column="resource_menu_type" property="resourceMenuType" jdbcType="VARCHAR" />
     <result column="resource_order" property="resourceOrder" jdbcType="TINYINT" />
     <result column="module_code" property="moduleCode" jdbcType="VARCHAR" />
     <result column="creator" property="creator" jdbcType="VARCHAR" />

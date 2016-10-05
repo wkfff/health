@@ -24,6 +24,8 @@ public class SysResource implements Serializable {
     private String resourceUrl;
 
     private String resourceStatus;
+    
+    private String resourceMenuType;
 
     private Byte resourceOrder;
 
@@ -140,4 +142,12 @@ public class SysResource implements Serializable {
     public void setModiDate(Date modiDate) {
         this.modiDate = modiDate;
     }
+
+	public String getResourceMenuType() {
+		return resourceMenuType;
+	}
+
+	public void setResourceMenuType(String resourceMenuType) {
+		this.resourceMenuType = resourceMenuType;
+	}
 }

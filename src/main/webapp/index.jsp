@@ -1,4 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
-	request.getRequestDispatcher("/product/desc").forward(request, response);
+	request.getRequestDispatcher("/common/main").forward(request, response);
 %>
