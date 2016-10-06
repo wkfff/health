@@ -26,10 +26,9 @@
   
   <select id="getUserPrivilege" resultMap="userPermission" parameterType="String">
 	select a.resource_id,a.parent_id,a.resource_code,a.resource_name,a.resource_url,
-	a.resource_type,a.module_code
-	from sys_resource a,sys_privilege b,sys_user_role c
-	where a.resource_id = b.access_code
-	and (b.master_code = c.role_id or b.master_code = #{userId} or c.user_id = #{userId})
+	a.resource_type,a.module_code from sys_resource a, sys_privilege b
+	where a.resource_id = b.access_code and (b.master_code = #{userId} or
+	exists (select 1 from sys_user_role c where b.master_code = c.role_id and c.user_id = #{userId}))
 	and b.privilege_operator = '10' order by a.parent_id,a.resource_order asc
   </select>
   

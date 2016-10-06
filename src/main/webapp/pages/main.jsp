@@ -40,23 +40,7 @@
 	</div>
 	<div class="left_title">常用功能操作</div>
 	<div id="jquery-accordion-menu" class="jquery-accordion-menu red">
-		<ul id="menu-list">
-			<li><a href="#">Services </a>
-				<ul class="submenu">
-					<li><a href="#">Web Design </a></li>
-					<li><a href="#">Hosting </a></li>
-					<li><a href="#">Design </a>
-						<ul class="submenu">
-							<li><a href="#">Graphics </a></li>
-							<li><a href="#">Vectors </a></li>
-							<li><a href="#">Photoshop </a></li>
-							<li><a href="#">Fonts </a></li>
-						</ul>
-					</li>
-					<li><a href="#">Consulting </a></li>
-				</ul>
-			</li>
-		</ul>
+		<ul id="menu-list"></ul>
 	</div>
 	
 </div>
@@ -65,6 +49,6 @@
 <script type="text/javascript" src="${ctp}/scripts/main/jquery-accordion-menu.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/main/main.js"></script>
 <script type="text/javascript">
-	jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+	
 </script>
 </html>

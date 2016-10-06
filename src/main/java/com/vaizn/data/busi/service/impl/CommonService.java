@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.vaizn.common.vo.TreeVo;
 import com.vaizn.common.vo.UserPermissionVo;
@@ -12,6 +13,7 @@ import com.vaizn.data.busi.dal.mapper.SysPrivilegeMapper;
 import com.vaizn.data.busi.service.ICommonService;
 import com.vaizn.utils.LoginUtils;
 
+@Service
 public class CommonService implements ICommonService {
 
 	@Autowired

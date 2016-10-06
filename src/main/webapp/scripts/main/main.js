@@ -16,12 +16,29 @@ $(function(){
 
 var main = function(){
 	
+	var treeHandle = function(trees){
+		var treeStr = "";
+		$.each(trees, function(index, value) {
+			treeStr += "<li><a href='javascript:void(0);'>" + this.name + "</a>";
+			if (this.childrens.length > 0) {
+				treeStr += "<ul class='submenu'>";
+				treeStr += treeHandle(this.childrens);
+				treeStr += "</ul>";
+			}
+			treeStr += "</li>";
+		});
+		return treeStr;
+	};
+	
 	var initMenus = function() {
 		var url = ctp + "/common/getUserMenus";
-		Common.post(url, {}, function(data) {
-			alert(JSON.stringify(data));
+		Common.post(url, {}, function(backdata) {
+			if (typeof backdata.data != "undefined" && backdata.data.length > 0) {
+				$("#menu-list").html(treeHandle(backdata.data));
+				jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+			}
 		});
-	}
+	};
 	
 	return {
 		init : function() {
