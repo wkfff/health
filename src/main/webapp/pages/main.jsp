@@ -7,6 +7,7 @@
   <title>内容管理系统</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%@ include file="/pages/common/baseFile.jsp"%>
+  <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Aqua/css/ligerui-all.css" />
   <link rel="stylesheet" href="${ctp}/styles/main/jquery-accordion-menu.css" />
   <link rel="stylesheet" href="${ctp}/styles/main/main.css" />
   <style type="text/css">
@@ -44,8 +45,12 @@
 	</div>
 	
 </div>
-<div class="right"></div>
+<div id="main" class="right">
+  <div tabid="home" title="首页" lselected="true"></div>
+</div>
 </body>
+<script type="text/javascript" src="${ctp}/scripts/ligerUI/js/core/base.js"></script>
+<script type="text/javascript" src="${ctp}/scripts/ligerUI/js/ligerui.min.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/main/jquery-accordion-menu.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/main/main.js"></script>
 <script type="text/javascript">

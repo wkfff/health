@@ -40,9 +40,17 @@ var main = function(){
 		});
 	};
 	
+	var initTabs = function() {
+		var tabHeight = $(window).height()-98-44;
+		$("#main").ligerTab();
+		var tab = liger.get("main");
+		tab.setHeight(tabHeight);
+	};
+	
 	return {
 		init : function() {
 			initMenus();
+			initTabs();
 		}
 	}
 }();
