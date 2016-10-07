@@ -16,6 +16,8 @@ $(function(){
 
 var main = function(){
 	
+	var tabObj;
+	
 	var treeHandle = function(trees){
 		var treeStr = "";
 		$.each(trees, function(index, value) {
@@ -42,15 +44,22 @@ var main = function(){
 	
 	var initTabs = function() {
 		var tabHeight = $(window).height()-98-44;
-		$("#main").ligerTab();
-		var tab = liger.get("main");
-		tab.setHeight(tabHeight);
+		tabObj = $("#main").ligerTab();
+		tabObj.setHeight(tabHeight);
+	};
+	
+	var menuClick = function(obj) {
+		var options = {tabid:obj.tabId, text:obj.tabName, url:obj.tabUrl};
+		tabObj.addTabItem(options);
 	};
 	
 	return {
 		init : function() {
 			initMenus();
 			initTabs();
+		},
+		menuNav : function() {
+			menuClick();
 		}
 	}
 }();
