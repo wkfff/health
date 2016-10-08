@@ -21,7 +21,12 @@ var main = function(){
 	var treeHandle = function(trees){
 		var treeStr = "";
 		$.each(trees, function(index, value) {
-			treeStr += "<li><a href='javascript:void(0);'>" + this.name + "</a>";
+			treeStr += "<li><a href='javascript:void(0);'";
+			if (this.url != null && this.url != "") {
+				var codeStr = Base64.encode(this.id+","+this.name+","+ctp+this.url);
+				treeStr += " onclick=\"main.menuNav('"+codeStr+"')\">" + this.name + "</a>";
+			} else
+				treeStr += ">" + this.name + "</a>";
 			if (this.childrens.length > 0) {
 				treeStr += "<ul class='submenu'>";
 				treeStr += treeHandle(this.childrens);
@@ -48,18 +53,19 @@ var main = function(){
 		tabObj.setHeight(tabHeight);
 	};
 	
-	var menuClick = function(obj) {
-		var options = {tabid:obj.tabId, text:obj.tabName, url:obj.tabUrl};
+	var _menuClick = function(str) {
+		var optAry = Base64.decode(str).split(",");
+		var options = {tabid:optAry[0], text:optAry[1], url:optAry[2]};
 		tabObj.addTabItem(options);
 	};
 	
 	return {
-		init : function() {
+		init:function() {
 			initMenus();
 			initTabs();
 		},
-		menuNav : function() {
-			menuClick();
+		menuNav:function(str) {
+			_menuClick(str);
 		}
 	}
 }();

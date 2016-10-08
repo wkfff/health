@@ -51,9 +51,7 @@
 </body>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/core/base.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/ligerui.min.js"></script>
+<script type="text/javascript" src="${ctp}/scripts/common/base64.min.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/main/jquery-accordion-menu.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/main/main.js"></script>
-<script type="text/javascript">
-	
-</script>
 </html>
