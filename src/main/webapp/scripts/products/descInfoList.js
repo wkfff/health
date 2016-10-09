@@ -80,7 +80,8 @@ var descInfoList = function() {
 		$("#search").click(loadGridData);
 		$("#addBtn").click(function(){
 			var url = ctp + "/product/desc/addModiPage";
-			window.open(url, "addModiPage", "height=500,width=900,top=100,left=200,resizable=no,location=no");
+			var codeStr = Base64.encode("addInfoPage,新增信息,"+url);
+			parent.main.menuNav(codeStr);
 		});
 		$("#editBtn").click(function(){
 			var rows = resultGrid.getSelectedRows();
@@ -91,7 +92,8 @@ var descInfoList = function() {
 			} else if (rows.length == 1) {
 				var descId = rows[0].descId;
 				var url = ctp + "/product/desc/addModiPage?descId=" + descId;
-				window.open(url, "addModiPage", "height=500,width=900,top=100,left=200,resizable=no,location=no");
+				var codeStr = Base64.encode("editInfoPage,修改信息,"+url);
+				parent.main.menuNav(codeStr);
 			}
 		});
 		$("#delBtn").click(function(){

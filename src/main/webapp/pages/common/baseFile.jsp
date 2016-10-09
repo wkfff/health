@@ -4,3 +4,4 @@
 </script>
 <script type="text/javascript" src="${ctp}/scripts/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/common/common.js"></script>
+<script type="text/javascript" src="${ctp}/scripts/common/base64.min.js"></script>

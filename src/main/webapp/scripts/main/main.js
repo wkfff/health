@@ -1,13 +1,11 @@
 $(function(){
 	$("#side_switch").click(function(){
 		$(".left").hide();
-		$("#main").contents().find(".right_body").css('margin-left',0);
 		$(this).hide();
 		$("#side_switchl").show();
 	});
 	$("#side_switchl").click(function(){
 		$(".left").show();
-		$("#main").contents().find(".right_body").css('margin-left',200);
 		$(this).hide();
 		$("#side_switch").show();
 	});
@@ -17,6 +15,7 @@ $(function(){
 var main = function(){
 	
 	var tabObj;
+	var allTabs = [];
 	
 	var treeHandle = function(trees){
 		var treeStr = "";
@@ -49,23 +48,33 @@ var main = function(){
 	
 	var initTabs = function() {
 		var tabHeight = $(window).height()-98-44;
-		tabObj = $("#main").ligerTab();
+		tabObj = $("#main").ligerTab({
+			onAfterRemoveTabItem : function(tabid){
+				allTabs.splice($.inArray(tabid, allTabs), 1);
+			}
+		});
 		tabObj.setHeight(tabHeight);
 	};
 	
-	var _menuClick = function(str) {
+	var _addTabItem = function(str) {
 		var optAry = Base64.decode(str).split(",");
 		var options = {tabid:optAry[0], text:optAry[1], url:optAry[2]};
-		tabObj.addTabItem(options);
+		if (-1 == $.inArray(optAry[0], allTabs)) {
+			allTabs.push(optAry[0]);
+			tabObj.addTabItem(options);
+		} else {
+			tabObj.selectTabItem(optAry[0]);
+		}
 	};
 	
 	return {
 		init:function() {
+			$("#main").width($(window).width() - 205);
 			initMenus();
 			initTabs();
 		},
 		menuNav:function(str) {
-			_menuClick(str);
+			_addTabItem(str);
 		}
 	}
 }();
