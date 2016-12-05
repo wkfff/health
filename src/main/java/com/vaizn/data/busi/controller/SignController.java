@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.vaizn.common.vo.SignInDataVo;
 import com.vaizn.data.busi.dal.entity.SysUser;
@@ -57,5 +58,11 @@ public class SignController extends BaseController {
 		}
 		
 		return response;
+	}
+	
+	@RequestMapping(path = "/logout", method={RequestMethod.POST,RequestMethod.GET})
+	public String userLogout(SessionStatus status) throws Exception {
+		status.setComplete();
+		return "/common/signIn";
 	}
 }

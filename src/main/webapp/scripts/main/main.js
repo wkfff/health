@@ -67,6 +67,12 @@ var main = function(){
 		}
 	};
 	
+	var _doLogout = function() {
+		var url = ctp + "/signin/logout";
+		$("#form1").attr("action", url);
+		$("#form1").submit();
+	};
+	
 	return {
 		init:function() {
 			$("#main").width($(window).width() - 205);
@@ -75,6 +81,9 @@ var main = function(){
 		},
 		menuNav:function(str) {
 			_addTabItem(str);
+		},
+		logout:function() {
+			_doLogout();
 		}
 	}
 }();

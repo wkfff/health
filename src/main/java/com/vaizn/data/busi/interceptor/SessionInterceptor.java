@@ -5,8 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -15,7 +13,7 @@ import com.vaizn.utils.LoginUtils;
 
 public class SessionInterceptor extends HandlerInterceptorAdapter {
 
-	private static final Logger logger = LoggerFactory.getLogger(SessionInterceptor.class);
+	//private static final Logger logger = LoggerFactory.getLogger(SessionInterceptor.class);
 	
 	private List<String> excludedUrls;
 	
@@ -39,7 +37,6 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 		}
 		SysUser user = (SysUser)request.getSession().getAttribute("user");
 		if (null == user) {
-			logger.info("==================登录超时,跳转到登录界面=================");
 			request.getRequestDispatcher("/pages/common/signIn.jsp").forward(request, response);
 			return false;
 		} else {

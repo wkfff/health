@@ -102,4 +102,5 @@ public class CommonController extends BaseController {
 	public BaseResponseDto getUserMenus() throws Exception {
 		return new BaseResponseDto("1000", "", commonService.getUserMenus());
 	}
+	
 }

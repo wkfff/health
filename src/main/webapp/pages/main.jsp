@@ -35,9 +35,9 @@
 <div class="left">
 	<div class="member_info">
 		<div class="member_ico"><img src="${ctp}/images/main/a.png" width="43" height="43"></div>
-		<a class="system_a" href="">账号管理</a>
-		<a href="" class="system_log">注销</a>
-		<a href="" class="system_logout">退出</a>
+		<a href="javascript:void(0);" class="system_a">账号管理</a>
+		<a href="javascript:void(0);" class="system_log">注销</a>
+		<a href="javascript:void(0);" class="system_logout" onclick="main.logout();">退出</a>
 	</div>
 	<div class="left_title">常用功能操作</div>
 	<div id="jquery-accordion-menu" class="jquery-accordion-menu red">
@@ -48,6 +48,7 @@
 <div id="main" class="right">
   <div tabid="home" title="首页" lselected="true"></div>
 </div>
+<form id="form1" name="form1" action=""></form>
 </body>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/core/base.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/ligerui.min.js"></script>
