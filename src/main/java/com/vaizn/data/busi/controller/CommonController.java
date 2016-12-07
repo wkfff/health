@@ -48,6 +48,11 @@ public class CommonController extends BaseController {
 		return "main";
 	}
 	
+	@RequestMapping(path = "/menuManager", method = RequestMethod.GET)
+	public String menuManagerPage() throws Exception {
+		return "/common/menuManager";
+	}
+	
 	@RequestMapping(path = "/getSysEnume", method = RequestMethod.GET)
 	@ResponseBody
 	public BaseResponseDto getSysEnumeData() throws Exception {
