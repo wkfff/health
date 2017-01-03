@@ -20,12 +20,12 @@ public class SysResource implements Serializable {
     private String resourceType;
 
     private String parentId;
+    
+    private String parentName;
 
     private String resourceUrl;
 
     private String resourceStatus;
-    
-    private String resourceMenuType;
 
     private Byte resourceOrder;
 
@@ -79,7 +79,15 @@ public class SysResource implements Serializable {
         this.parentId = parentId;
     }
 
-    public String getResourceUrl() {
+    public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+
+	public String getResourceUrl() {
         return resourceUrl;
     }
 
@@ -142,12 +150,4 @@ public class SysResource implements Serializable {
     public void setModiDate(Date modiDate) {
         this.modiDate = modiDate;
     }
-
-	public String getResourceMenuType() {
-		return resourceMenuType;
-	}
-
-	public void setResourceMenuType(String resourceMenuType) {
-		this.resourceMenuType = resourceMenuType;
-	}
 }

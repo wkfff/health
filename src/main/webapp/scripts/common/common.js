@@ -71,7 +71,22 @@ var Common = function() {
 						fn(backdata);
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					
+					alert(XMLHttpRequest.responseText);
+				}
+			});
+		},
+		postNotObj: function(url, params, fn) {
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				url: url,
+				data: params,
+				success: function(backdata) {
+					if (typeof fn == "function")
+						fn(backdata);
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					alert(XMLHttpRequest.responseText);
 				}
 			});
 		}

@@ -10,24 +10,33 @@ public class UserPermissionVo implements Serializable {
 	
 	private String parentId;
 	
+	private String parentName;
+	
 	private String resourceCode;
 	
 	private String resourceName;
 	
 	private String resourceUrl;
 	
+	private String resourceStatus;
+	
+	private Integer resourceOrder;
+	
 	private String resourceType;
 	
 	private String moduleCode;
 
-	public UserPermissionVo(String resourceId, String parentId,
-			String resourceCode, String resourceName,
-			String resourceUrl, String resourceType, String moduleCode) {
+	public UserPermissionVo(String resourceId, String parentId,String parentName,
+			String resourceCode, String resourceName, String resourceUrl,
+			String resourceStatus, Integer resourceOrder, String resourceType, String moduleCode) {
 		this.resourceId = resourceId;
 		this.parentId = parentId;
+		this.parentName = parentName;
 		this.resourceCode = resourceCode;
 		this.resourceName = resourceName;
 		this.resourceUrl = resourceUrl;
+		this.resourceStatus = resourceStatus;
+		this.resourceOrder = resourceOrder;
 		this.resourceType = resourceType;
 		this.moduleCode = moduleCode;
 	}
@@ -50,6 +59,14 @@ public class UserPermissionVo implements Serializable {
 
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
+	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
 	}
 
 	public String getResourceCode() {
@@ -90,5 +107,21 @@ public class UserPermissionVo implements Serializable {
 
 	public void setModuleCode(String moduleCode) {
 		this.moduleCode = moduleCode;
+	}
+
+	public String getResourceStatus() {
+		return resourceStatus;
+	}
+
+	public void setResourceStatus(String resourceStatus) {
+		this.resourceStatus = resourceStatus;
+	}
+
+	public Integer getResourceOrder() {
+		return resourceOrder;
+	}
+
+	public void setResourceOrder(Integer resourceOrder) {
+		this.resourceOrder = resourceOrder;
 	}
 }

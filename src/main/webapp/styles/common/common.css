@@ -48,10 +48,13 @@ table {
 	margin: 0;
 }
 
-.panel-button {
+.panel-button, .left-button, .center-button {
 	position: relative;
 	display: inline-block;
 	margin: 5px;
+}
+
+.panel-button {
 	float: right;
 }
 
@@ -96,4 +99,8 @@ table {
 
 .panel .panel-content form {
 	margin-left: 10px;
+}
+
+.left-button {
+	float: left;
 }

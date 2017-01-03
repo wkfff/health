@@ -17,4 +17,8 @@
     <result column="moditor" property="moditor" jdbcType="VARCHAR" />
     <result column="modi_date" property="modiDate" jdbcType="DATE" />
   </resultMap>
+  
+  <delete id="deleteResource" parameterType="String">
+  	delete from sys_resource where FIND_IN_SET(resource_id, queryResourceChildren(#{resourceId}))
+  </delete>
 </mapper>

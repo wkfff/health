@@ -15,4 +15,11 @@ public interface SysPrivilegeMapper extends Mapper<SysPrivilege> {
 	 * @throws Exception
 	 */
 	List<UserPermissionVo> getUserPrivilege(String userId) throws Exception;
+	
+	/**
+	 * 删除相关资源关联的权限
+	 * @param resourceId
+	 * @throws Exception
+	 */
+	void deleteResourcePrivilege(String resourceId) throws Exception;
 }

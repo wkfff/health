@@ -1,6 +1,7 @@
 package com.vaizn.data.busi.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,11 +21,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.vaizn.common.AES;
 import com.vaizn.common.vo.SysEnumeVo;
+import com.vaizn.data.busi.dal.entity.SysResource;
 import com.vaizn.data.busi.service.IAttachmentsService;
 import com.vaizn.data.busi.service.ICommonService;
 import com.vaizn.data.busi.service.ISysEnumeService;
 import com.vaizn.data.dto.common.AttachmentsRequestDto;
 import com.vaizn.data.dto.common.BaseResponseDto;
+import com.vaizn.utils.LoginUtils;
 
 @Controller
 @RequestMapping("/common")
@@ -51,6 +55,11 @@ public class CommonController extends BaseController {
 	@RequestMapping(path = "/menuManager", method = RequestMethod.GET)
 	public String menuManagerPage() throws Exception {
 		return "/common/menuManager";
+	}
+	
+	@RequestMapping(path = "/addEditMenuPage", method = RequestMethod.GET)
+	public String addEditMenuPage() throws Exception {
+		return "/common/addEditMenu";
 	}
 	
 	@RequestMapping(path = "/getSysEnume", method = RequestMethod.GET)
@@ -106,6 +115,38 @@ public class CommonController extends BaseController {
 	@ResponseBody
 	public BaseResponseDto getUserMenus() throws Exception {
 		return new BaseResponseDto("1000", "", commonService.getUserMenus());
+	}
+	
+	@RequestMapping(path = "/saveMenu", method = RequestMethod.POST)
+	@ResponseBody
+	public BaseResponseDto saveMenuData(@RequestBody SysResource vo) throws Exception {
+		try {
+			String userAccount = LoginUtils.currentLoginUser().getUserAccount();
+			vo.setModitor(userAccount);
+			vo.setModiDate(new Date());
+			commonService.saveUserMenu(vo);
+			return new BaseResponseDto("1000", "保存成功！", null);
+		} catch(Exception e) {
+			e.printStackTrace();
+			logger.error("保存菜单出错", e);
+			return new BaseResponseDto("1001", "保存失败！", null);
+		}
+		
+	}
+	
+	@RequestMapping(path = "/deleteMenu", method = RequestMethod.POST)
+	@ResponseBody
+	public BaseResponseDto deleteMenu(String resourceId) throws Exception {
+		if (StringUtils.isNotBlank(resourceId)) {
+			try {
+				commonService.exeDelResourceAndChildren(resourceId);
+			} catch(Exception e) {
+				e.printStackTrace();
+				logger.error("删除资源出错", e);
+				return new BaseResponseDto("1001", "删除失败！", null);
+			}
+		}
+		return new BaseResponseDto("1000", "删除成功！", null);
 	}
 	
 }

@@ -11,25 +11,36 @@ public class TreeVo implements Serializable {
 	
 	private String parentId;
 	
+	private String parentName;
+	
 	private String name;
+	
+	private String text;
 	
 	private String code;
 	
 	private String permissionCode;
 	
+	private String status;
+	
+	private Integer order;
+	
 	private String url;
 	
-	private List<TreeVo> childrens;
+	private List<TreeVo> children;
 
-	public TreeVo(String id, String parentId, String name,
-			String code, String permissionCode, String url, List<TreeVo> childrens) {
+	public TreeVo(String id, String parentId, String parentName, String name, String code,
+			String permissionCode, String url, String status, Integer order, List<TreeVo> children) {
 		this.id = id;
 		this.parentId = parentId;
+		this.parentName = parentName;
 		this.name = name;
 		this.code = code;
 		this.permissionCode = permissionCode;
+		this.status = status;
+		this.order = order;
 		this.url = url;
-		this.childrens = childrens;
+		this.children = children;
 	}
 
 	public TreeVo() {
@@ -52,12 +63,28 @@ public class TreeVo implements Serializable {
 		this.parentId = parentId;
 	}
 
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public String getCode() {
@@ -76,6 +103,22 @@ public class TreeVo implements Serializable {
 		this.permissionCode = permissionCode;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Integer getOrder() {
+		return order;
+	}
+
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
+
 	public String getUrl() {
 		return url;
 	}
@@ -84,11 +127,11 @@ public class TreeVo implements Serializable {
 		this.url = url;
 	}
 
-	public List<TreeVo> getChildrens() {
-		return childrens;
+	public List<TreeVo> getChildren() {
+		return children;
 	}
 
-	public void setChildrens(List<TreeVo> childrens) {
-		this.childrens = childrens;
+	public void setChildren(List<TreeVo> children) {
+		this.children = children;
 	}
 }
