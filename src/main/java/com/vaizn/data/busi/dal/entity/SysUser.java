@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vaizn.common.DateSerializerForDay;
+
 @Table(name = "sys_user")
 public class SysUser implements Serializable {
 
@@ -59,6 +62,7 @@ public class SysUser implements Serializable {
         this.userName = userName;
     }
 
+    @JsonSerialize(using = DateSerializerForDay.class)
     public Date getCreateDate() {
         return createDate;
     }

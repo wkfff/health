@@ -86,7 +86,6 @@ var main = function(){
 		Common.post(url, {}, function(backdata) {
 			if (typeof backdata.data != "undefined" && backdata.data.length > 0) {
 				$("#menu-list").html(accordionHandle(backdata.data));
-				//jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
 				new Accordion($("#menu-list"), false);
 			}
 		});

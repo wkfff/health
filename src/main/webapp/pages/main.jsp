@@ -9,8 +9,7 @@
   <%@ include file="/pages/common/baseFile.jsp"%>
   <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Aqua/css/ligerui-all.css" />
   <link rel="stylesheet" href="${ctp}/scripts/ligerUI/skins/Gray/css/all.css" />
-  <!-- <link rel="stylesheet" href="${ctp}/styles/main/jquery-accordion-menu.css" /> -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${ctp}/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="${ctp}/styles/common/tree-menu.css" />
   <link rel="stylesheet" href="${ctp}/styles/main/main.css" />
   <style type="text/css">
@@ -43,11 +42,6 @@
 		<a href="javascript:void(0);" class="system_logout" onclick="main.logout();">退出</a>
 	</div>
 	<div class="left_title">常用功能操作</div>
-	<!-- 
-	<div id="jquery-accordion-menu" class="jquery-accordion-menu red">
-		<ul id="menu-list"></ul>
-	</div>
-	 -->
 	<div id="accordion_menu" style="width:196px;">
 	  <ul id="menu-list" class="accordion"></ul>
 	</div>
@@ -59,7 +53,6 @@
 <form id="form1" name="form1" action=""></form>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/core/base.js"></script>
 <script type="text/javascript" src="${ctp}/scripts/ligerUI/js/ligerui.min.js"></script>
-<!-- <script type="text/javascript" src="${ctp}/scripts/main/jquery-accordion-menu.js"></script> -->
 <script type="text/javascript" src="${ctp}/scripts/main/main.js"></script>
 </body>
 </html>

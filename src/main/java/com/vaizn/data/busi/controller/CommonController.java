@@ -19,14 +19,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.pagehelper.PageInfo;
 import com.vaizn.common.AES;
+import com.vaizn.common.vo.LigerPageVo;
 import com.vaizn.common.vo.SysEnumeVo;
 import com.vaizn.data.busi.dal.entity.SysResource;
+import com.vaizn.data.busi.dal.entity.SysUser;
 import com.vaizn.data.busi.service.IAttachmentsService;
 import com.vaizn.data.busi.service.ICommonService;
 import com.vaizn.data.busi.service.ISysEnumeService;
 import com.vaizn.data.dto.common.AttachmentsRequestDto;
 import com.vaizn.data.dto.common.BaseResponseDto;
+import com.vaizn.data.dto.common.UserRequestDto;
 import com.vaizn.utils.LoginUtils;
 
 @Controller
@@ -57,9 +61,19 @@ public class CommonController extends BaseController {
 		return "/common/menuManager";
 	}
 	
+	@RequestMapping(path = "/userManager", method = RequestMethod.GET)
+	public String userManagerPage() throws Exception {
+		return "/common/userManager";
+	}
+	
 	@RequestMapping(path = "/addEditMenuPage", method = RequestMethod.GET)
 	public String addEditMenuPage() throws Exception {
 		return "/common/addEditMenu";
+	}
+	
+	@RequestMapping(path = "/addEditUserPage", method = RequestMethod.GET)
+	public String addEditUserPage() throws Exception {
+		return "/common/addEditUser";
 	}
 	
 	@RequestMapping(path = "/getSysEnume", method = RequestMethod.GET)
@@ -143,6 +157,43 @@ public class CommonController extends BaseController {
 			} catch(Exception e) {
 				e.printStackTrace();
 				logger.error("删除资源出错", e);
+				return new BaseResponseDto("1001", "删除失败！", null);
+			}
+		}
+		return new BaseResponseDto("1000", "删除成功！", null);
+	}
+	
+	@RequestMapping(path = "/getUsers", method = RequestMethod.POST)
+	@ResponseBody
+	public LigerPageVo<SysUser> getUsers(@RequestBody UserRequestDto dto) throws Exception {
+		PageInfo<SysUser> page = commonService.getUsers(dto);
+		LigerPageVo<SysUser> ligerPage = new LigerPageVo<SysUser>(page.getList(), page.getTotal());
+		return ligerPage;
+	}
+	
+	@RequestMapping(path = "/saveUser", method = RequestMethod.POST)
+	@ResponseBody
+	public BaseResponseDto saveUserData(@RequestBody SysUser vo) throws Exception {
+		try {
+			commonService.exeSaveUser(vo);
+			return new BaseResponseDto("1000", "保存成功！", null);
+		} catch(Exception e) {
+			e.printStackTrace();
+			logger.error("保存用户出错", e);
+			return new BaseResponseDto("1001", "保存失败！", null);
+		}
+		
+	}
+	
+	@RequestMapping(path = "/deleteUser", method = RequestMethod.POST)
+	@ResponseBody
+	public BaseResponseDto deleteUser(@RequestParam(value = "userId[]") String[] userId) throws Exception {
+		if (null != userId && userId.length > 0) {
+			try {
+				commonService.exeDelUser(userId);
+			} catch(Exception e) {
+				e.printStackTrace();
+				logger.error("删除用户出错", e);
 				return new BaseResponseDto("1001", "删除失败！", null);
 			}
 		}

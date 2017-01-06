@@ -32,7 +32,7 @@ public class UserService extends BaseService<SysUser> implements IUserService {
 		Criteria criteria = example.createCriteria();
 		criteria.andEqualTo("userAccount", vo.getUserAccount());
 		criteria.andEqualTo("userPassword", vo.getUserPassword());
-		criteria.andEqualTo("userStatus", 1);
+		criteria.andEqualTo("userStatus", "10");
 		List<SysUser> list = userMapper.selectByExample(example);
 		if (null != list && !list.isEmpty())
 			return list.get(0);
