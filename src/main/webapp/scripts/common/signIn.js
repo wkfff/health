@@ -5,7 +5,7 @@ jQuery(document).ready(function() {
     $('.page-container form .username, .page-container form .password').keyup(function(){
         $(this).parent().find('.error').fadeOut('fast');
     });
-    
+    SignIn.init();
 });
 var SignIn = function(){
 	var _doLogin = function() {
@@ -29,15 +29,19 @@ var SignIn = function(){
 	};
 	
 	var _keydownEvent = function() {
-		var e = window.event || arguments.callee.caller.arguments[0];
-		if (e && e.keyCode == 13) {
-			_doLogin();
-		}
+		$("#userPassword").keydown(function(e){
+			if (e.keyCode == 13) {
+				_doLogin();
+			}
+		});
 	};
 	
 	return {
-		submit:function(){
+		submit:function() {
 			_doLogin();
+		},
+		init:function() {
+			_keydownEvent();
 		}
 	};
 }();
