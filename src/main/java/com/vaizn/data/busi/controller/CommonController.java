@@ -24,12 +24,14 @@ import com.vaizn.common.AES;
 import com.vaizn.common.vo.LigerPageVo;
 import com.vaizn.common.vo.SysEnumeVo;
 import com.vaizn.data.busi.dal.entity.SysResource;
+import com.vaizn.data.busi.dal.entity.SysRole;
 import com.vaizn.data.busi.dal.entity.SysUser;
 import com.vaizn.data.busi.service.IAttachmentsService;
 import com.vaizn.data.busi.service.ICommonService;
 import com.vaizn.data.busi.service.ISysEnumeService;
 import com.vaizn.data.dto.common.AttachmentsRequestDto;
 import com.vaizn.data.dto.common.BaseResponseDto;
+import com.vaizn.data.dto.common.RoleRequestDto;
 import com.vaizn.data.dto.common.UserRequestDto;
 import com.vaizn.utils.LoginUtils;
 
@@ -66,6 +68,11 @@ public class CommonController extends BaseController {
 		return "/common/userManager";
 	}
 	
+	@RequestMapping(path = "/roleManager", method = RequestMethod.GET)
+	public String roleManagerPage() throws Exception {
+		return "/common/roleManager";
+	}
+	
 	@RequestMapping(path = "/addEditMenuPage", method = RequestMethod.GET)
 	public String addEditMenuPage() throws Exception {
 		return "/common/addEditMenu";
@@ -74,6 +81,11 @@ public class CommonController extends BaseController {
 	@RequestMapping(path = "/addEditUserPage", method = RequestMethod.GET)
 	public String addEditUserPage() throws Exception {
 		return "/common/addEditUser";
+	}
+	
+	@RequestMapping(path = "/addEditRolePage", method = RequestMethod.GET)
+	public String addEditRolePage() throws Exception {
+		return "/common/addEditRole";
 	}
 	
 	@RequestMapping(path = "/getSysEnume", method = RequestMethod.GET)
@@ -194,6 +206,43 @@ public class CommonController extends BaseController {
 			} catch(Exception e) {
 				e.printStackTrace();
 				logger.error("删除用户出错", e);
+				return new BaseResponseDto("1001", "删除失败！", null);
+			}
+		}
+		return new BaseResponseDto("1000", "删除成功！", null);
+	}
+	
+	@RequestMapping(path = "/getRoles", method = RequestMethod.POST)
+	@ResponseBody
+	public LigerPageVo<SysRole> getRoles(@RequestBody RoleRequestDto dto) throws Exception {
+		PageInfo<SysRole> page = commonService.getRoles(dto);
+		LigerPageVo<SysRole> ligerPage = new LigerPageVo<SysRole>(page.getList(), page.getTotal());
+		return ligerPage;
+	}
+	
+	@RequestMapping(path = "/saveRole", method = RequestMethod.POST)
+	@ResponseBody
+	public BaseResponseDto saveRoleData(@RequestBody SysRole vo) throws Exception {
+		try {
+			commonService.exeSaveRole(vo);
+			return new BaseResponseDto("1000", "保存成功！", null);
+		} catch(Exception e) {
+			e.printStackTrace();
+			logger.error("保存角色出错", e);
+			return new BaseResponseDto("1001", "保存失败！", null);
+		}
+		
+	}
+	
+	@RequestMapping(path = "/deleteRole", method = RequestMethod.POST)
+	@ResponseBody
+	public BaseResponseDto deleteRole(@RequestParam(value = "roleId[]") String[] roleId) throws Exception {
+		if (null != roleId && roleId.length > 0) {
+			try {
+				commonService.exeDelRole(roleId);
+			} catch(Exception e) {
+				e.printStackTrace();
+				logger.error("删除角色出错", e);
 				return new BaseResponseDto("1001", "删除失败！", null);
 			}
 		}

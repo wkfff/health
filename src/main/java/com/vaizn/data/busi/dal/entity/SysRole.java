@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vaizn.common.DateSerializerForDay;
+
 @Table(name = "sys_role")
 public class SysRole implements Serializable {
 
@@ -53,6 +56,7 @@ public class SysRole implements Serializable {
         this.roleDesc = roleDesc;
     }
 
+    @JsonSerialize(using = DateSerializerForDay.class)
     public Date getCreateDate() {
         return createDate;
     }

@@ -13,12 +13,16 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.vaizn.common.vo.TreeVo;
 import com.vaizn.common.vo.UserPermissionVo;
+import com.vaizn.data.busi.dal.entity.SysPrivilege;
 import com.vaizn.data.busi.dal.entity.SysResource;
+import com.vaizn.data.busi.dal.entity.SysRole;
 import com.vaizn.data.busi.dal.entity.SysUser;
 import com.vaizn.data.busi.dal.mapper.SysPrivilegeMapper;
 import com.vaizn.data.busi.dal.mapper.SysResourceMapper;
+import com.vaizn.data.busi.dal.mapper.SysRoleMapper;
 import com.vaizn.data.busi.dal.mapper.SysUserMapper;
 import com.vaizn.data.busi.service.ICommonService;
+import com.vaizn.data.dto.common.RoleRequestDto;
 import com.vaizn.data.dto.common.UserRequestDto;
 import com.vaizn.utils.CommonUtils;
 import com.vaizn.utils.LoginUtils;
@@ -35,6 +39,8 @@ public class CommonService implements ICommonService {
 	private SysResourceMapper resourceMapper;
 	@Autowired
 	private SysUserMapper userMapper;
+	@Autowired
+	private SysRoleMapper roleMapper;
 	
 	@Override
 	public List<TreeVo> getUserMenus() throws Exception {
@@ -98,9 +104,9 @@ public class CommonService implements ICommonService {
 		Example example = new Example(SysUser.class, false);
 		Criteria criteria = example.createCriteria();
 		if (StringUtils.isNotBlank(dto.getUserName()))
-			criteria.andLike("userName", dto.getUserName());
+			criteria.andLike("userName", "%"+dto.getUserName()+"%");
 		if (StringUtils.isNotBlank(dto.getUserAccount()))
-			criteria.andLike("userAccount", dto.getUserAccount());
+			criteria.andLike("userAccount", "%"+dto.getUserAccount()+"%");
 		if (StringUtils.isNotBlank(dto.getUserStatus()))
 			criteria.andEqualTo("userStatus", dto.getUserStatus());
 		example.orderBy("createDate").asc();
@@ -122,10 +128,54 @@ public class CommonService implements ICommonService {
 
 	@Override
 	public void exeDelUser(String... ids) throws Exception {
+		List<String> userIds = Arrays.asList(ids);
+		Example privilegeExample = new Example(SysPrivilege.class, false);
+		Criteria privilegeCriteria = privilegeExample.createCriteria();
+		privilegeCriteria.andEqualTo("privilegeMaster", "10");
+		privilegeCriteria.andIn("masterCode", userIds);
+		privilegeMapper.deleteByExample(privilegeExample);
+		
 		Example example = new Example(SysUser.class, false);
 		Criteria criteria = example.createCriteria();
-		criteria.andIn("userId", Arrays.asList(ids));
+		criteria.andIn("userId", userIds);
 		userMapper.deleteByExample(example);
+	}
+	
+	@Override
+	public PageInfo<SysRole> getRoles(RoleRequestDto dto) throws Exception {
+		Example example = new Example(SysRole.class, false);
+		Criteria criteria = example.createCriteria();
+		if (StringUtils.isNotBlank(dto.getRoleName()))
+			criteria.andLike("roleName", "%"+dto.getRoleName()+"%");
+		example.orderBy("createDate").desc();
+		PageHelper.startPage(dto.getPageNum(), dto.getPageSize());
+		return new PageInfo<SysRole>(roleMapper.selectByExample(example));
+	}
+
+	@Override
+	public void exeSaveRole(SysRole vo) throws Exception {
+		if (StringUtils.isNoneBlank(vo.getRoleId()))
+			roleMapper.updateByPrimaryKeySelective(vo);
+		else {
+			vo.setRoleId(CommonUtils.getUUID());
+			vo.setCreateDate(new Date());
+			roleMapper.insert(vo);
+		}
+	}
+
+	@Override
+	public void exeDelRole(String... ids) throws Exception {
+		List<String> roleIds = Arrays.asList(ids);
+		Example privilegeExample = new Example(SysPrivilege.class, false);
+		Criteria privilegeCriteria = privilegeExample.createCriteria();
+		privilegeCriteria.andEqualTo("privilegeMaster", "11");
+		privilegeCriteria.andIn("masterCode", roleIds);
+		privilegeMapper.deleteByExample(privilegeExample);
+		
+		Example example = new Example(SysRole.class, false);
+		Criteria criteria = example.createCriteria();
+		criteria.andIn("roleId", roleIds);
+		roleMapper.deleteByExample(example);
 	}
 
 }
