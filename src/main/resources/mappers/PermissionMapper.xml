@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vaizn.data.busi.dal.mapper.permission.PermissionMapper" >
+  
+  <resultMap id="userMap" type="com.vaizn.data.busi.dal.entity.SysUser" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_account" property="userAccount" />
+    <result column="user_name" property="userName" />
+    <result column="user_mobile" property="userMobile" />
+    <result column="user_email" property="userEmail" />
+    <result column="user_status" property="userStatus" />
+    <result column="create_date" property="createDate" />
+  </resultMap>
+  
+  <resultMap id="resourcePermission" type="com.vaizn.common.vo.ResourcePermissionVo">
+  	<result column="resource_id" property="resourceId" />
+  	<result column="parent_id" property="parentId" />
+  	<result column="parent_name" property="parentName" />
+  	<result column="resource_code" property="resourceCode" />
+  	<result column="resource_name" property="resourceName" />
+  	<result column="resource_url" property="resourceUrl" />
+  	<result column="resource_status" property="resourceStatus" />
+  	<result column="resource_order" property="resourceOrder" />
+  	<result column="resource_type" property="resourceType" />
+  	<result column="module_code" property="moduleCode" />
+  </resultMap>
+  
+  <select id="getRoleUsers" resultMap="userMap" parameterType="String">
+    select b.user_id,b.user_name,b.user_status,b.user_mobile,b.user_email
+    from sys_user_role a, sys_user b where a.user_id = b.user_id and a.role_id = #{roleId}
+  </select>
+  
+  <select id="getResourcePermission" resultMap="resourcePermission">
+	select a.resource_id,a.parent_id,a.parent_name,a.resource_code,a.resource_name,a.resource_status,
+	a.resource_order,a.resource_url,a.resource_type,a.module_code from sys_resource a
+	where a.resource_status = '10' order by a.parent_id,a.resource_order asc
+  </select>
+</mapper>

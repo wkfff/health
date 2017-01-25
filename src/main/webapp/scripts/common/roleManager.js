@@ -21,6 +21,7 @@ var roleManager = function(){
 	var _itemClick = function(action) {
 		var selectRow = _gridManager.getSelectedRows();
 		if ("add" == action) {
+			_roleData = {};
 			_roleData.operation = action;
 			var obj = {width: 470,height: 300,url:ctp+"/common/addEditRolePage",isResize: false, modal: false,title: "新增修改角色"};
 			$.ligerDialog.open(obj);
@@ -59,6 +60,9 @@ var roleManager = function(){
 					}
 				});
 			}
+		} else if ("authorization" == action) {
+			var codeStr = Base64.encode("roleAuthorize,角色授权,"+ctp+"/common/roleAuthorizePage");
+			parent.main.menuNav(codeStr);
 		}
 	};
 	
@@ -86,6 +90,7 @@ var roleManager = function(){
 			height: "100%",
 			pageSize: 30
 		});
+		_loadGridData();
 	};
 	
 	var _loadGridData = function() {

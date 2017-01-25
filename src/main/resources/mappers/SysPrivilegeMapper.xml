@@ -14,7 +14,7 @@
     <result column="modi_date" property="modiDate" jdbcType="DATE" />
   </resultMap>
   
-  <resultMap id="userPermission" type="com.vaizn.common.vo.UserPermissionVo">
+  <resultMap id="userPermission" type="com.vaizn.common.vo.ResourcePermissionVo">
   	<result column="resource_id" property="resourceId" />
   	<result column="parent_id" property="parentId" />
   	<result column="parent_name" property="parentName" />

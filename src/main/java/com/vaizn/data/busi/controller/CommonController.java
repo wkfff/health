@@ -12,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -86,6 +88,17 @@ public class CommonController extends BaseController {
 	@RequestMapping(path = "/addEditRolePage", method = RequestMethod.GET)
 	public String addEditRolePage() throws Exception {
 		return "/common/addEditRole";
+	}
+	
+	@RequestMapping(path = "/roleAuthorizePage", method = RequestMethod.GET)
+	public String roleAuthorizePage() throws Exception {
+		return "/common/roleAuthorize";
+	}
+	
+	@RequestMapping(path = "/userSelectPage/{roleId}", method = RequestMethod.GET)
+	public String userSelectPage(@PathVariable String roleId, Model model) throws Exception {
+		model.addAttribute("roleId", roleId);
+		return "/common/userSelect";
 	}
 	
 	@RequestMapping(path = "/getSysEnume", method = RequestMethod.GET)

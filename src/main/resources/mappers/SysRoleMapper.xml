@@ -8,4 +8,5 @@
     <result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
     <result column="create_date" property="createDate" jdbcType="DATE" />
   </resultMap>
+
 </mapper>

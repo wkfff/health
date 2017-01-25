@@ -114,7 +114,6 @@ var menuManager = function(){
 			usePager: false,
 			width: "100%",
 			height: "100%",
-			rowHeight: 22,
 			alternatingRow: false,
 			tree: {columnId: "id1"}
 		});

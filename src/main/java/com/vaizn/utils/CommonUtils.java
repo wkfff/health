@@ -4,11 +4,16 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.vaizn.common.vo.ResourcePermissionVo;
+import com.vaizn.common.vo.TreeVo;
 
 public class CommonUtils {
 
@@ -130,6 +135,35 @@ public class CommonUtils {
 				outBuffer.append(aChar);
 		}
 		return outBuffer.toString();
+	}
+	
+	/**
+	 * 处理树形菜单
+	 * @param permissions
+	 * @param id
+	 * @return
+	 */
+	public static List<TreeVo> treeProcess(List<ResourcePermissionVo> permissions, String id) {
+		List<TreeVo> trees = new ArrayList<TreeVo>();
+		for (ResourcePermissionVo permission : permissions) {
+			if (id.equals(permission.getParentId())) {
+				TreeVo tree = new TreeVo();
+				String parentId = permission.getParentId();
+				tree.setId(permission.getResourceId());
+				tree.setParentId(parentId);
+				tree.setParentName(permission.getParentName());
+				tree.setCode(permission.getResourceCode());
+				tree.setName(permission.getResourceName());
+				tree.setText(permission.getResourceName());
+				tree.setPermissionCode(permission.getResourceCode());
+				tree.setUrl(permission.getResourceUrl());
+				tree.setStatus(permission.getResourceStatus());
+				tree.setOrder(permission.getResourceOrder());
+				tree.setChildren(treeProcess(permissions, permission.getResourceId()));
+				trees.add(tree);
+			}
+		}
+		return trees;
 	}
 	
 	/**

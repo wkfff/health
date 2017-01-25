@@ -2,7 +2,7 @@ package com.vaizn.common.vo;
 
 import java.io.Serializable;
 
-public class UserPermissionVo implements Serializable {
+public class ResourcePermissionVo implements Serializable {
 
 	private static final long serialVersionUID = -2395335050365118613L;
 
@@ -26,7 +26,7 @@ public class UserPermissionVo implements Serializable {
 	
 	private String moduleCode;
 
-	public UserPermissionVo(String resourceId, String parentId,String parentName,
+	public ResourcePermissionVo(String resourceId, String parentId,String parentName,
 			String resourceCode, String resourceName, String resourceUrl,
 			String resourceStatus, Integer resourceOrder, String resourceType, String moduleCode) {
 		this.resourceId = resourceId;
@@ -41,7 +41,7 @@ public class UserPermissionVo implements Serializable {
 		this.moduleCode = moduleCode;
 	}
 
-	public UserPermissionVo() {
+	public ResourcePermissionVo() {
 		
 	}
 
