@@ -4,7 +4,8 @@
   <resultMap id="BaseResultMap" type="com.vaizn.data.busi.dal.entity.SysEnume" >
     <id column="enume_id" property="enumeId" />
     <result column="enume_code" property="enumeCode" />
-    <result column="enume_desc" property="enumeDesc" />
-    <result column="busi_column" property="busiColumn" />
+    <result column="enume_name" property="enumeName" />
+    <result column="enume_value" property="enumeValue" />
+    <result column="enume_text" property="enumeText" />
   </resultMap>
 </mapper>

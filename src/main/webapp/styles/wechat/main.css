@@ -1,0 +1,111 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    font-size:12px;
+    font-family:Tahoma;
+    color:#000000;
+    height:100%;
+}
+ul{
+    list-style-type:none;
+}
+a{
+    text-decoration:none;
+}
+img{
+    border:none
+}
+button{
+    outline: none;
+}
+#header,#footer{
+    height: 30px;
+    width: 100%;
+    position: relative;
+    clear: both;
+    background-color: #9999CC;
+}
+#content{
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #CCCCFF;
+}
+#leftBtn{
+    width: 30px;
+    height: 100%;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    background-color: #CCFFFF;
+}
+#rightBtn{
+    width: 30px;
+    height: 100%;
+    float: right;
+    text-align: center;
+    line-height: 30px;
+    background-color: #CCFFFF;
+}
+.title-center{
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    display: inline-block;
+    font-weight: bold;
+}
+.footer-btn{
+    height: 100%;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+}
+.goods-list{
+    width: 100%;
+    height: 200px;
+    margin: 0px;
+    padding: 10px;
+    clear: both;
+}
+.goods-list .goods-img{
+    height: 100%;
+    width: 120px;
+    text-align: center;
+    line-height: 200px;
+    float: left;
+}
+.goods-list .goods-img img{
+    margin: 0px;
+    border: 0px;
+    outline-width: 0px;
+    width: 120px;
+    height: 180px;
+}
+.goods-list .goods-info{
+    height: 100%;
+    float: left;
+}
+.goods-info .info-line{
+    margin: 0px 0px 5px 10px;
+}
+.goods-info .info-line span{
+    font-size: 14px;
+}
+.goods-list .goods-btn{
+    height: 100%;
+    width: 100px;
+    float: left;
+    line-height: 200px;
+}
+.goods-list .goods-btn button{
+    width: 80px;
+    height: 40px;
+    border: 0px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    background-color: #FF3399;
+    color: #FFF;
+}

@@ -8,6 +8,10 @@
     <result column="user_mobile" property="userMobile" />
     <result column="user_email" property="userEmail" />
     <result column="user_status" property="userStatus" />
+    <result column="org_code" property="orgCode" />
+    <result column="org_name" property="orgName" />
+    <result column="position_code" property="positionCode" />
+    <result column="position_name" property="positionName" />
     <result column="create_date" property="createDate" />
   </resultMap>
 </mapper>

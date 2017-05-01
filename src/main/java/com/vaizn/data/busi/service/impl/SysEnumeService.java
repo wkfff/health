@@ -38,12 +38,12 @@ public class SysEnumeService extends BaseService<SysEnume> implements ISysEnumeS
 			map = new HashMap<String, List<SysEnumeVo>>();
 			SysEnumeVo enumeVo = null;
 			for (SysEnume enume : list) {
-				enumes = map.get(enume.getBusiColumn());
+				enumes = map.get(enume.getEnumeCode());
 				if (null == enumes) {
 					enumes = new ArrayList<SysEnumeVo>();
-					map.put(enume.getBusiColumn(), enumes);
+					map.put(enume.getEnumeCode(), enumes);
 				}
-				enumeVo = new SysEnumeVo(enume.getEnumeId(), enume.getEnumeCode(), enume.getEnumeDesc());
+				enumeVo = new SysEnumeVo(enume.getEnumeId(), enume.getEnumeValue(), enume.getEnumeText());
 				enumes.add(enumeVo);
 			}
 		}

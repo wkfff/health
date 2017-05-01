@@ -65,6 +65,7 @@
     		    <list>
     		      <value>/signin/page</value>
     		      <value>/signin/doSignIn</value>
+    		      <value>/wechat/sourceValidate</value>
     		      <value>/pages/common/signIn.jsp</value>
     		    </list>
     		  </property>

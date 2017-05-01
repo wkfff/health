@@ -24,6 +24,14 @@ public class SysUser implements Serializable {
 
     private String userStatus;
     
+    private String orgCode;
+    
+    private String orgName;
+    
+    private String positionCode;
+    
+    private String positionName;
+    
     private String userMobile;
     
     private String userEmail;
@@ -93,5 +101,37 @@ public class SysUser implements Serializable {
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
+	}
+
+	public String getOrgCode() {
+		return orgCode;
+	}
+
+	public void setOrgCode(String orgCode) {
+		this.orgCode = orgCode;
+	}
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
+	public String getPositionCode() {
+		return positionCode;
+	}
+
+	public void setPositionCode(String positionCode) {
+		this.positionCode = positionCode;
+	}
+
+	public String getPositionName() {
+		return positionName;
+	}
+
+	public void setPositionName(String positionName) {
+		this.positionName = positionName;
 	}
 }
